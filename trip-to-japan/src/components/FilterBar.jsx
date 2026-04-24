@@ -7,9 +7,9 @@ const FilterBar = () => {
       <div className="filter-bar-content">
         <div className="breadcrumb-section">
           <nav className="breadcrumbs">
-            <span>Vietnam Tour Packages</span>
+            <span>Japan Tour Packages</span>
             <span className="separator">/</span>
-            <span className="current-page">Vietnam Classic Tours</span>
+            <span className="current-page">Japan Classic Tours</span>
           </nav>
           <div className="filter-button">
             <FiSliders className="filter-icon" />
@@ -33,6 +33,8 @@ const FilterBar = () => {
           padding: 20px 0;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
           margin-top: 100px; /* Offset for fixed navbar */
+          border-bottom: 1px solid #222;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
 
         .filter-bar-content {
@@ -102,6 +104,7 @@ const FilterBar = () => {
           cursor: pointer;
           font-size: 14px;
           transition: all 0.3s ease;
+          color: #fff;
         }
 
         .sort-dropdown:hover {

@@ -2,10 +2,10 @@
 
 :root {
   --primary-color: #FFD700;
-  --bg-color: #000000;
-  --card-bg: #111111;
-  --text-color: #ffffff;
-  --text-muted: rgba(255, 255, 255, 0.6);
+  --bg-color: #ffffff;
+  --card-bg: #f9f9f9;
+  --text-color: #1a1a1a;
+  --text-muted: rgba(0, 0, 0, 0.6);
 }
 
 * {

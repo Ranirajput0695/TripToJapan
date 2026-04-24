@@ -1,6 +1,6 @@
 const Services = () => {
   return (
-    <div style={{ padding: "40px" }}>
+    <div style={{ padding: "40px", paddingTop: "140px" }}>
       <h2>Our Services</h2>
 
       <h3>Airport Transfers</h3>
@@ -16,3 +16,4 @@ const Services = () => {
 };
 
 export default Services;
+

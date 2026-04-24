@@ -19,7 +19,7 @@ const Navbar = () => {
       </div>
 
       {/* 🔻 MAIN NAVBAR */}
-      <div style={{ background: "rgba(0, 0, 0, 0.8)", backdropFilter: "blur(10px)", borderBottom: "1px solid #222" }}>
+      <div style={{ background: "rgba(0, 0, 0, 0.9)", backdropFilter: "blur(10px)", borderBottom: "1px solid #222" }}>
         <div style={container}>
           
           {/* Logo */}
