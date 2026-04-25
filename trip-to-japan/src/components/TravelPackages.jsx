@@ -109,11 +109,7 @@ const TravelPackages = () => {
                   </div>
                 )}
 
-                <div className="card-footer">
-                  <button className="enquire-btn">
-                    View Details <FiArrowRight className="arrow" />
-                  </button>
-                </div>
+
               </div>
             </div>
           ))}

@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../assets/Logo.png";
+import QuickInquiryModal from "./QuickInquiryModal";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <header style={{ position: "fixed", top: 0, width: "100%", zIndex: 1000 }}>
       
@@ -11,10 +15,7 @@ const Navbar = () => {
           <span style={{ fontSize: "12px", fontWeight: "600", letterSpacing: "0.5px" }}>
             PREMIUM JAPAN TOUR OPERATOR FOR INDIANS
           </span>
-          <div style={{ display: "flex", gap: "20px" }}>
-            <span style={{ fontSize: "12px", cursor: "pointer" }}>Help Center</span>
-            <span style={{ fontSize: "12px", cursor: "pointer" }}>Inr ▾</span>
-          </div>
+          {/* Currency/Help removed */}
         </div>
       </div>
 
@@ -23,7 +24,7 @@ const Navbar = () => {
         <div style={container}>
           
           {/* Logo */}
-          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <Link to="/" style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none" }}>
             <img
               src={logo}
               alt="logo"
@@ -38,22 +39,25 @@ const Navbar = () => {
             <span style={{ color: "#fff", fontWeight: "800", fontSize: "20px", letterSpacing: "-0.5px" }}>
               TRIP TO <span style={{ color: "#FFD700" }}>JAPAN</span>
             </span>
-          </div>
+          </Link>
 
           {/* Menu */}
           <nav style={{ display: "flex", alignItems: "center" }}>
-            <a href="/" style={link}>Home</a>
-            <a href="/services" style={link}>Tour Packages</a>
-            <a href="/tours" style={link}>Inspirations</a>
-            <a href="/about" style={link}>About Us</a>
-            <button style={ctaButton}>Book A Call</button>
+            <Link to="/" style={linkStyle}>Home</Link>
+            <Link to="/packages" style={linkStyle}>Tour Packages</Link>
+            <Link to="/services" style={linkStyle}>Our Services</Link>
+            <Link to="/transport" style={linkStyle}>Transport</Link>
+            <Link to="/about" style={linkStyle}>About Us</Link>
+            <button style={ctaButton} onClick={() => setIsModalOpen(true)}>Book A Call</button>
           </nav>
+
         </div>
       </div>
+
+      <QuickInquiryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </header>
   );
 };
-
 
 const container = {
   maxWidth: "1200px",
@@ -64,9 +68,8 @@ const container = {
   alignItems: "center"
 };
 
-/* 🔗 MENU STYLE */
-const link = {
-  margin: "0 18px",
+const linkStyle = {
+  margin: "0 15px",
   textDecoration: "none",
   color: "#fff",
   fontWeight: "600",
@@ -79,10 +82,10 @@ const ctaButton = {
   color: "#000",
   border: "none",
   padding: "10px 20px",
-  borderRadius: "6px",
-  fontWeight: "700",
+  borderRadius: "8px",
+  fontWeight: "800",
   fontSize: "14px",
-  marginLeft: "20px",
+  marginLeft: "15px",
   cursor: "pointer",
   transition: "all 0.3s ease"
 };

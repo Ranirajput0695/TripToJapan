@@ -1,152 +1,233 @@
 import React from "react";
-import FilterBar from "../components/FilterBar";
-import IntroductionSection from "../components/IntroductionSection";
-import ServicesAndDestinations from "../components/ServicesAndDestinations";
-import TravelPackages from "../components/TravelPackages";
+import { 
+  Box, 
+  Container, 
+  Typography, 
+  Grid, 
+  Button, 
+  Card, 
+  CardContent, 
+  Stack, 
+  Paper, 
+  Avatar, 
+  Divider 
+} from "@mui/material";
+import { 
+  ArrowForward as ArrowIcon, 
+  CheckCircle as CheckIcon, 
+  FlightTakeoff as FlightIcon, 
+  Map as MapIcon, 
+  Group as GroupIcon, 
+  Star as StarIcon,
+  SupportAgent as SupportIcon,
+  LocalOffer as PriceIcon
+} from "@mui/icons-material";
+import heroImg from "../assets/about-hero.png";
 
 const Home = () => {
-  const japanTours = [
-    { id: 1, title: "Tokyo & Kyoto Explorer", locations: "TOKYO • HAKONE • KYOTO", price: "$2,499", duration: "10 Days" },
-    { id: 2, title: "Hokkaido Winter Wonderland", locations: "SAPPORO • OTARU • NISEKO", price: "$2,999", duration: "8 Days" },
-    { id: 3, title: "Southern Japan Heritage", locations: "OSAKA • HIROSHIMA • FUKUOKA", price: "$2,299", duration: "12 Days" },
-    { id: 4, title: "Japan Alpine Route", locations: "NAGOYA • TAKAYAMA • KANAZAWA", price: "$2,699", duration: "9 Days" },
-    { id: 5, title: "Mt. Fuji & Onsen Retreat", locations: "TOKYO • MT. FUJI • IZU", price: "$1,899", duration: "6 Days" },
-    { id: 6, title: "Hidden Gems of Shikoku", locations: "MATSUYAMA • TAKAMATSU • KOCHI", price: "$2,799", duration: "11 Days" },
-  ];
-
   return (
-    <main style={{ backgroundColor: "#ffffff", minHeight: "100vh" }}>
-      <FilterBar />
+    <Box sx={{ bgcolor: "#fff", color: "#1e293b" }}>
       
-      <IntroductionSection />
-      
-      <TravelPackages />
+      {/* 🚀 HERO SECTION */}
+      <Box 
+        sx={{ 
+          height: "90vh", 
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${heroImg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          color: "#fff",
+          textAlign: "center",
+          px: 2
+        }}
+      >
+        <Typography variant="overline" sx={{ letterSpacing: 4, color: "#FFD700", fontWeight: "800", mb: 2 }}>
+          POWERED BY HTC GROUP
+        </Typography>
+        <Typography variant="h1" sx={{ fontWeight: "900", fontSize: { xs: "3rem", md: "5rem" }, mb: 2 }}>
+          Your Trusted <span style={{ color: "#FFD700" }}>Japan</span> Travel Partner
+        </Typography>
+        <Typography variant="h5" sx={{ maxWidth: "800px", mb: 5, opacity: 0.9, lineHeight: 1.6 }}>
+          Professional ground travel arrangements, luxury transportation, and curated sightseeing experiences across the Land of the Rising Sun.
+        </Typography>
+        <Stack direction={{ xs: "column", sm: "row" }} spacing={3}>
+          <Button 
+            variant="contained" 
+            size="large" 
+            href="/services"
+            sx={{ 
+              bgcolor: "#FFD700", 
+              color: "#000", 
+              px: 6, 
+              py: 2, 
+              fontWeight: "800", 
+              borderRadius: 2,
+              "&:hover": { bgcolor: "#e6c200" }
+            }}
+          >
+            EXPLORE PACKAGES
+          </Button>
+          <Button 
+            variant="outlined" 
+            size="large" 
+            href="/contact"
+            sx={{ 
+              color: "#fff", 
+              borderColor: "#fff", 
+              px: 6, 
+              py: 2, 
+              fontWeight: "800", 
+              borderRadius: 2,
+              "&:hover": { borderColor: "#FFD700", color: "#FFD700" }
+            }}
+          >
+            CONTACT US
+          </Button>
+        </Stack>
+      </Box>
 
-      <ServicesAndDestinations />
+      {/* 🏛 WELCOME SECTION */}
+      <Container maxWidth="lg" sx={{ py: 15 }}>
+        <Grid container spacing={8} alignItems="center">
+          <Grid item xs={12} md={6}>
+            <Typography variant="h2" fontWeight="800" gutterBottom>
+              Welcome to <span style={{ color: "#FFD700" }}>TripToJapan.in</span>
+            </Typography>
+            <Typography variant="body1" sx={{ color: "text.secondary", fontSize: "1.2rem", lineHeight: 1.8, mb: 4 }}>
+              TripToJapan.in is a Japan-based travel service platform powered by **HTC Group of Companies**, 
+              providing professional ground travel arrangements across Japan. We specialize in delivering 
+              reliable transportation, guided sightseeing, and customized FIT tours.
+            </Typography>
+            <Stack spacing={2}>
+              {[
+                "Dedicated operations team based in Japan",
+                "Smooth travel experiences for travel agents & families",
+                "Professional and timely services",
+                "Experienced local ground team"
+              ].map((item, i) => (
+                <Box key={i} sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                  <CheckIcon sx={{ color: "#FFD700" }} />
+                  <Typography variant="body1" fontWeight="600">{item}</Typography>
+                </Box>
+              ))}
+            </Stack>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Paper elevation={0} sx={{ p: 4, bgcolor: "#f8fafc", borderRadius: 6, border: "1px solid #e2e8f0" }}>
+              <Typography variant="h4" fontWeight="800" sx={{ mb: 4 }}>
+                Key Services
+              </Typography>
+              <Grid container spacing={3}>
+                {[
+                  { icon: <FlightIcon />, label: "Airport Transfers" },
+                  { icon: <MapIcon />, label: "Sightseeing Tours" },
+                  { icon: <StarIcon />, label: "FIT Tour Arrangements" },
+                  { icon: <GroupIcon />, label: "Group Tour Management" },
+                  { icon: <PriceIcon />, label: "Attraction Tickets" },
+                  { icon: <ArrowIcon />, label: "Intercity Transfers" }
+                ].map((s, i) => (
+                  <Grid item xs={6} key={i}>
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                      <Box sx={{ color: "#FFD700" }}>{s.icon}</Box>
+                      <Typography variant="subtitle2" fontWeight="700">{s.label}</Typography>
+                    </Box>
+                  </Grid>
+                ))}
+              </Grid>
+              <Button 
+                fullWidth 
+                variant="contained" 
+                sx={{ mt: 5, bgcolor: "#1e293b", py: 1.5, borderRadius: 2 }}
+                href="/services"
 
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "40px 20px", color: "#000" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "40px" }}>
-          <h2 style={{ fontSize: "32px", fontWeight: "700" }}>Featured <span style={{ color: "#FFD700" }}>Japan Tours</span></h2>
-          <p style={{ opacity: 0.5 }}>Showing {japanTours.length} results</p>
-        </div>
+              >
+                VIEW ALL SERVICES
+              </Button>
+            </Paper>
+          </Grid>
+        </Grid>
+      </Container>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(350px, 1fr))", gap: "30px" }}>
-          {japanTours.map((tour) => (
-            <div key={tour.id} className="tour-card">
-              <div className="card-image-container">
-                <div className="best-seller-badge">BEST SELLER</div>
-              </div>
-              <div style={{ padding: "25px" }}>
-                <div className="location-tag">{tour.locations}</div>
-                <h3 className="tour-title">{tour.title}</h3>
-                <div className="tour-meta">
-                  <span>{tour.duration}</span>
-                  <span>Max 12 People</span>
-                </div>
-                <div className="card-footer">
-                  <div>
-                    <span className="price-label">From</span>
-                    <span className="price-value">{tour.price}</span>
-                  </div>
-                  <button className="book-button">View Details</button>
-                </div>
-              </div>
-            </div>
+      {/* 🗺 POPULAR DESTINATIONS */}
+      <Box sx={{ bgcolor: "#f8fafc", py: 15 }}>
+        <Container maxWidth="lg">
+          <Typography variant="h3" textAlign="center" fontWeight="800" gutterBottom>
+            Popular Japan Destinations
+          </Typography>
+          <Typography variant="body1" textAlign="center" color="text.secondary" sx={{ mb: 8 }}>
+            We cover all major destinations with professional ground handling.
+          </Typography>
+          <Grid container spacing={2} justifyContent="center">
+            {["Tokyo", "Osaka", "Kyoto", "Nara", "Mount Fuji", "Hakone", "Hiroshima", "Nagoya", "Fukuoka"].map((dest) => (
+              <Grid item key={dest}>
+                <Paper 
+                  elevation={0} 
+                  sx={{ 
+                    px: 4, py: 2, borderRadius: 50, border: "1px solid #e2e8f0", 
+                    fontWeight: "700", transition: "0.3s",
+                    "&:hover": { bgcolor: "#FFD700", borderColor: "#FFD700", transform: "scale(1.1)" }
+                  }}
+                >
+                  {dest}
+                </Paper>
+              </Grid>
+            ))}
+          </Grid>
+        </Container>
+      </Box>
+
+      {/* 🏆 WHY CHOOSE US */}
+      <Container maxWidth="lg" sx={{ py: 15 }}>
+        <Typography variant="h3" textAlign="center" fontWeight="800" gutterBottom>
+          Why Choose <span style={{ color: "#FFD700" }}>TripToJapan.in</span>
+        </Typography>
+        <Typography variant="body1" textAlign="center" color="text.secondary" sx={{ mb: 10 }}>
+          The TripToJapan advantage for premium travel.
+        </Typography>
+        <Grid container spacing={4}>
+          {[
+            { icon: <MapIcon />, title: "Japan-Based Local Company", desc: "Operating directly from our office in Tochigi-Ken." },
+            { icon: <GroupIcon />, title: "Experienced Ground Team", desc: "Professional local staff for seamless coordination." },
+            { icon: <ArrowIcon />, title: "Reliable Transportation", desc: "Safe and punctual private vehicles across Japan." },
+            { icon: <PriceIcon />, title: "Competitive Pricing", desc: "Transparent rates for premium travel arrangements." },
+            { icon: <SupportIcon />, title: "English Support", desc: "24/7 dedicated support for global travelers." },
+            { icon: <CheckIcon />, title: "Custom Planning", desc: "Tailored itineraries that fit your unique needs." }
+          ].map((item, i) => (
+            <Grid item xs={12} sm={6} md={4} key={i}>
+              <Card elevation={0} sx={{ height: "100%", p: 2, textAlign: "center", "&:hover": { bgcolor: "#fffcf0" } }}>
+                <Box sx={{ color: "#FFD700", mb: 2 }}>{item.icon}</Box>
+                <Typography variant="h6" fontWeight="800" gutterBottom>{item.title}</Typography>
+                <Typography variant="body2" color="text.secondary">{item.desc}</Typography>
+              </Card>
+            </Grid>
           ))}
-        </div>
-      </div>
+        </Grid>
+      </Container>
 
-      <style>{`
-        .tour-card {
-          background: #ffffff;
-          border-radius: 20px;
-          overflow: hidden;
-          border: 1px solid #eee;
-          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-        }
-        .tour-card:hover {
-          transform: translateY(-10px);
-          border-color: #FFD700;
-          box-shadow: 0 10px 30px rgba(255, 215, 0, 0.15);
-        }
-        .card-image-container {
-          height: 240px;
-          background: #f0f0f0;
-          position: relative;
-          background-image: linear-gradient(45deg, #f0f0f0 25%, #f5f5f5 25%, #f5f5f5 50%, #f0f0f0 50%, #f0f0f0 75%, #f5f5f5 75%, #f5f5f5 100%);
-          background-size: 40px 40px;
-        }
-        .best-seller-badge {
-          position: absolute;
-          top: 15px;
-          right: 15px;
-          background: #FFD700;
-          color: #000;
-          padding: 6px 14px;
-          border-radius: 20px;
-          font-weight: 800;
-          font-size: 11px;
-          letter-spacing: 1px;
-        }
-        .location-tag {
-          color: #FFD700;
-          font-size: 11px;
-          font-weight: 700;
-          margin-bottom: 12px;
-          letter-spacing: 1.5px;
-        }
-        .tour-title {
-          margin: 0 0 15px 0;
-          font-size: 22px;
-          font-weight: 700;
-          color: #1a1a1a;
-        }
-        .tour-meta {
-          display: flex;
-          gap: 15px;
-          fontSize: 13px;
-          opacity: 0.5;
-          margin-bottom: 25px;
-          color: #000;
-        }
-        .card-footer {
-          border-top: 1px solid #eee;
-          padding-top: 20px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-        .price-label {
-          font-size: 11px;
-          display: block;
-          opacity: 0.5;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-          color: #000;
-        }
-        .price-value {
-          font-weight: 800;
-          color: #000;
-          font-size: 24px;
-        }
-        .book-button {
-          background: #000;
-          color: #fff;
-          border: none;
-          padding: 12px 24px;
-          border-radius: 12px;
-          font-weight: 700;
-          cursor: pointer;
-          transition: all 0.3s ease;
-        }
-        .book-button:hover {
-          background: #FFD700;
-          color: #000;
-          transform: scale(1.05);
-        }
-      `}</style>
-    </main>
+      {/* 📞 CTA SECTION */}
+      <Box sx={{ bgcolor: "#FFD700", py: 10, textAlign: "center" }}>
+        <Container maxWidth="md">
+          <Typography variant="h3" fontWeight="900" gutterBottom>
+            Ready to Plan Your Japan Trip?
+          </Typography>
+          <Typography variant="h6" sx={{ opacity: 0.8, mb: 4 }}>
+            Talk to our local experts and get a customized travel plan today.
+          </Typography>
+          <Button 
+            variant="contained" 
+            size="large" 
+            href="/contact"
+            sx={{ bgcolor: "#000", color: "#fff", px: 8, py: 2, fontWeight: "800", borderRadius: 3 }}
+          >
+            GET A QUOTE NOW
+          </Button>
+        </Container>
+      </Box>
+
+    </Box>
   );
 };
 

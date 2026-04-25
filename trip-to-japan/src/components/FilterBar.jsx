@@ -5,25 +5,12 @@ const FilterBar = () => {
   return (
     <div className="filter-bar-container">
       <div className="filter-bar-content">
-        <div className="breadcrumb-section">
-          <nav className="breadcrumbs">
-            <span>Japan Tour Packages</span>
-            <span className="separator">/</span>
-            <span className="current-page">Japan Classic Tours</span>
-          </nav>
-          <div className="filter-button">
-            <FiSliders className="filter-icon" />
-            <span className="filter-text">FILTER TOUR</span>
-          </div>
-        </div>
+        {/* Breadcrumbs removed */}
+
+
         
-        <div className="sort-section">
-          <div className="sort-dropdown">
-            <span>Sort by latest</span>
-            <FiChevronDown className="dropdown-icon" />
-          </div>
-        </div>
       </div>
+
 
       <style jsx="true">{`
         .filter-bar-container {
