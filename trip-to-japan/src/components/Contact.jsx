@@ -73,9 +73,12 @@ Message: ${formData.message}`;
     setStatus({ ...status, submitting: true });
 
     try {
-      const res = await axios.post("http://localhost:5000/api/inquiries", formData);
+      const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:5000";
+      const res = await axios.post(`${API_URL}/api/inquiries`, formData);
+
       handleResponse(res.status, res.data.message);
     } catch (error) {
+
       handleResponse(
         error.response?.status || 500,
         error.response?.data?.message || "Something went wrong. Please try again."

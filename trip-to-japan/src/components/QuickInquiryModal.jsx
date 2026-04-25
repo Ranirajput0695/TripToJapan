@@ -23,16 +23,21 @@ const QuickInquiryModal = ({ isOpen, onClose }) => {
     setStatus({ submitting: true, msg: "" });
 
     try {
-      await axios.post("http://localhost:5000/api/inquiries", formData);
+      const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:5000";
+      await axios.post(`${API_URL}/api/inquiries`, formData);
+
       setStatus({ submitting: false, msg: "Success! We will call you back." });
+
       setTimeout(() => {
         onClose();
         setStatus({ submitting: false, msg: "" });
         setFormData({ fullName: "", phone: "", email: "", message: "Quick Inquiry from Header" });
       }, 2000);
     } catch (error) {
-      setStatus({ submitting: false, msg: "Error. Please try again." });
+      const errorMsg = error.response?.data?.message || "Error. Please try again.";
+      setStatus({ submitting: false, msg: errorMsg });
     }
+
   };
 
   return (

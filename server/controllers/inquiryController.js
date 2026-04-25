@@ -11,7 +11,9 @@ const transporter = nodemailer.createTransport({
 });
 
 const submitInquiry = async (req, res) => {
+  console.log("📩 Received Inquiry Request:", req.body);
   try {
+
     const {
       fullName,
       email,
@@ -78,9 +80,10 @@ const submitInquiry = async (req, res) => {
     console.error("Error saving inquiry:", error);
     res.status(500).json({
       success: false,
-      message: "Internal server error. Please try again later.",
+      message: `Server Error: ${error.message}. Please check if Firestore is enabled in your Firebase console.`,
       error: error.message,
     });
+
   }
 };
 

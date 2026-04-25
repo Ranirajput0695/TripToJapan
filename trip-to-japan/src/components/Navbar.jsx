@@ -198,10 +198,8 @@ const Navbar = () => {
           color: #FFD700 !important;
           transform: translateX(5px);
         }
-        body {
-          overscroll-behavior: none; /* Prevents bounce/shake on mobile */
-        }
       `}</style>
+
     </header>
   );
 };
