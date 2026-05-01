@@ -125,30 +125,6 @@ const TravelPackages = () => {
                         objectFit: 'cover' 
                       }}
                     />
-                    {/* Footer Line Overlay */}
-                    {pkg.title === "Tokyo Special!!!" && (
-                      <Box sx={{ 
-                        position: 'absolute', 
-                        bottom: 0, 
-                        left: 0, 
-                        right: 0, 
-                        bgcolor: 'rgba(211, 211, 211, 0.95)', 
-                        py: 1, 
-                        textAlign: 'center',
-                        color: '#000',
-                        borderTop: '1px solid rgba(0,0,0,0.1)'
-                      }}>
-                        <Typography variant="h6" sx={{ fontWeight: '900', fontSize: '20px', lineHeight: 1.1, fontFamily: 'serif' }}>
-                          {pkg.title}
-                        </Typography>
-                        <Typography variant="body1" sx={{ fontWeight: '900', fontSize: '18px', lineHeight: 1.1, fontFamily: 'serif' }}>
-                          {pkg.duration}
-                        </Typography>
-                        <Typography variant="body2" sx={{ fontWeight: '900', fontSize: '15px', lineHeight: 1.1, fontFamily: 'serif' }}>
-                          Package Category: {pkg.category}
-                        </Typography>
-                      </Box>
-                    )}
                   </Box>
                   
                   <CardContent sx={{ p: 4, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>

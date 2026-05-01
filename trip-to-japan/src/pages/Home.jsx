@@ -20,9 +20,6 @@ const Home = () => {
       {/* 🏛 INTRODUCTION SECTION */}
       <IntroductionSection />
 
-      {/* 🗺 SERVICES & DESTINATIONS SECTION */}
-      <ServicesAndDestinations />
-
       {/* 📦 TRAVEL PACKAGES SECTION */}
       <TravelPackages />
 
