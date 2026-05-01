@@ -137,6 +137,7 @@ import ItineraryDetail from "./pages/ItineraryDetailPage";
 import Services from "./pages/AllServicesPage";
 import Transport from "./pages/TransportPage";
 import Contact from "./pages/ContactPage";
+import Destination from "./pages/DestinationPage";
 
 function App() {
   return (
@@ -148,6 +149,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/packages" element={<Itineraries />} />
+        <Route path="/destinations" element={<Destination />} />
         <Route path="/itinerary-details" element={<ItineraryDetail />} />
         <Route path="/services" element={<Services />} />
         <Route path="/transport" element={<Transport />} />

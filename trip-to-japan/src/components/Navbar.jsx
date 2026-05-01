@@ -35,6 +35,7 @@ const Navbar = () => {
 
   const navLinks = [
     { title: "Home", path: "/" },
+    { title: "Destination", path: "/destinations" },
     { title: "Tour Packages", path: "/packages" },
     { title: "Our Services", path: "/services" },
     { title: "Transport", path: "/transport" },
@@ -100,8 +101,8 @@ const Navbar = () => {
             <Typography sx={{ 
               color: "#002366", 
               fontWeight: "900", 
-              fontSize: isMobile ? "20px" : "36px", 
-              letterSpacing: "-1px",
+              fontSize: isMobile ? "20px" : "28px", 
+              letterSpacing: "-0.5px",
               textTransform: "uppercase"
             }}>
               TRIP TO JAPAN
@@ -110,7 +111,12 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           {!isMobile && (
-            <nav style={{ display: "flex", alignItems: "center" }}>
+            <nav style={{ 
+              display: "flex", 
+              alignItems: "center", 
+              gap: "8px", // Reduced gap to fit all items
+              flexWrap: "nowrap" // Prevent wrapping
+            }}>
               {navLinks.map((link) => (
                 <Link 
                   key={link.title} 
@@ -119,15 +125,20 @@ const Navbar = () => {
                     ...linkStyle,
                     color: location.pathname === link.path ? "#fff" : "#002366",
                     background: location.pathname === link.path ? "#002366" : "transparent",
-                    padding: "8px 16px",
+                    padding: "8px 12px", // Slightly reduced horizontal padding
                     borderRadius: "8px",
+                    whiteSpace: "nowrap", // Ensure text stays on one line
                   }}
                 >
                   {link.title}
                 </Link>
               ))}
               <button 
-                style={ctaButtonStyle} 
+                style={{
+                  ...ctaButtonStyle,
+                  whiteSpace: "nowrap", // Prevent button text wrapping
+                  padding: "10px 20px" // Slightly more compact button
+                }} 
                 onClick={() => setIsModalOpen(true)}
               >
                 <PhoneIcon sx={{ fontSize: 18, mr: 1 }} />

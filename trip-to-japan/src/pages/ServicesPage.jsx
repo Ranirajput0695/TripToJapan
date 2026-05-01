@@ -167,11 +167,11 @@ const ServicesPage = () => {
           }}
         />
         <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 2, textAlign: 'center', color: '#fff' }}>
-          <Typography variant="overline" sx={{ letterSpacing: 6, fontWeight: "800", opacity: 0.9 }}>
+          <Typography variant="overline" sx={{ letterSpacing: 6, fontWeight: "800", opacity: 0.9, fontSize: { xs: '0.7rem', md: '0.9rem' } }}>
             EXPLORE JAPAN
           </Typography>
           <Typography variant="h1" sx={{ 
-            fontSize: { xs: '3rem', md: '5rem' }, 
+            fontSize: { xs: '2.5rem', sm: '3.5rem', md: '5rem' }, 
             fontWeight: "900", 
             textTransform: 'uppercase',
             mb: 2,
@@ -179,29 +179,29 @@ const ServicesPage = () => {
           }}>
             Tour <span style={{ color: "#FFB7C5" }}>Itineraries</span>
           </Typography>
-          <Typography variant="h6" sx={{ maxWidth: "700px", mx: "auto", fontWeight: '500', opacity: 0.9 }}>
+          <Typography variant="h6" sx={{ maxWidth: "700px", mx: "auto", fontWeight: '500', opacity: 0.9, fontSize: { xs: '1rem', md: '1.25rem' } }}>
             Discover our handpicked selection of premium Japan travel packages.
           </Typography>
         </Container>
       </Box>
 
       {/* 🎡 TOKYO KIDS SPECIAL SLIDER */}
-      <Box sx={{ width: '100%', mb: 10, bgcolor: '#fdfdfd', py: 8 }}>
+      <Box sx={{ width: '100%', mb: { xs: 6, md: 10 }, bgcolor: '#fdfdfd', py: { xs: 4, md: 8 } }}>
         <Container maxWidth="xl">
-          <Box sx={{ textAlign: 'center', mb: 6 }}>
-            <Typography variant="overline" sx={{ letterSpacing: 4, color: "#FFB7C5", fontWeight: "900" }}>
+          <Box sx={{ textAlign: 'center', mb: { xs: 4, md: 6 } }}>
+            <Typography variant="overline" sx={{ letterSpacing: 4, color: "#FFB7C5", fontWeight: "900", fontSize: { xs: '0.7rem', md: '0.9rem' } }}>
               FAMILY SPECIAL
             </Typography>
-            <Typography variant="h2" sx={{ fontWeight: '950', color: '#002366', textTransform: 'uppercase' }}>
+            <Typography variant="h2" sx={{ fontWeight: '950', color: '#002366', textTransform: 'uppercase', fontSize: { xs: '1.8rem', sm: '2.5rem', md: '3.5rem' } }}>
               Tokyo <span style={{ color: "#FFB7C5" }}>Kids</span> Special
             </Typography>
-            <Typography variant="h6" sx={{ color: '#666', mt: 1 }}>
+            <Typography variant="h6" sx={{ color: '#666', mt: 1, fontSize: { xs: '0.9rem', md: '1.2rem' } }}>
               4 Nights / 5 Days - The Ultimate Family Adventure
             </Typography>
           </Box>
 
           <Box sx={{ 
-            borderRadius: { xs: 0, md: 8 }, 
+            borderRadius: { xs: 4, md: 8 }, 
             overflow: 'hidden', 
             boxShadow: '0 30px 60px rgba(0,0,0,0.12)',
             position: 'relative'
@@ -213,7 +213,7 @@ const ServicesPage = () => {
               autoplay={{ delay: 5000, disableOnInteraction: false }}
               navigation
               pagination={{ clickable: true }}
-              style={{ height: '600px' }}
+              style={{ height: 'clamp(400px, 60vh, 600px)' }}
             >
               {kidsSpecialItinerary.map((step, index) => (
                 <SwiperSlide key={index}>
@@ -236,13 +236,13 @@ const ServicesPage = () => {
                       p: { xs: 4, md: 10 },
                       color: '#fff'
                     }}>
-                      <Typography variant="h6" sx={{ color: '#FFB7C5', fontWeight: '900', mb: 1 }}>
+                      <Typography variant="h6" sx={{ color: '#FFB7C5', fontWeight: '900', mb: 1, fontSize: { xs: '0.8rem', md: '1.25rem' } }}>
                         {step.day}
                       </Typography>
-                      <Typography variant="h3" sx={{ fontWeight: '900', mb: 2, fontSize: { xs: '2rem', md: '3.5rem' } }}>
+                      <Typography variant="h3" sx={{ fontWeight: '900', mb: 2, fontSize: { xs: '1.8rem', sm: '2.5rem', md: '3.5rem' } }}>
                         {step.title}
                       </Typography>
-                      <Typography variant="body1" sx={{ maxWidth: '800px', fontSize: '1.2rem', opacity: 0.9, lineHeight: 1.8 }}>
+                      <Typography variant="body1" sx={{ maxWidth: '800px', fontSize: { xs: '0.9rem', md: '1.2rem' }, opacity: 0.9, lineHeight: 1.8 }}>
                         {step.description}
                       </Typography>
                     </Box>
@@ -254,15 +254,15 @@ const ServicesPage = () => {
         </Container>
 
         {/* 🏆 ULTRA-PREMIUM PACKAGE DETAILS SECTION */}
-        <Container maxWidth="lg" sx={{ mt: 15, pb: 20 }}>
+        <Container maxWidth="lg" sx={{ mt: { xs: 8, md: 15 }, pb: { xs: 10, md: 20 } }}>
           {/* Section Header */}
-          <Box sx={{ textAlign: 'center', mb: 12 }}>
+          <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 12 } }}>
             <Box sx={{ display: 'inline-flex', alignItems: 'center', gap: 1, bgcolor: 'rgba(255,183,197,0.1)', px: 3, py: 1, borderRadius: 10, mb: 3 }}>
               <StarIcon sx={{ color: '#FFB7C5', fontSize: '1rem' }} />
-              <Typography variant="overline" sx={{ fontWeight: '900', color: '#002366', letterSpacing: 2 }}>ALL-INCLUSIVE DETAILS</Typography>
+              <Typography variant="overline" sx={{ fontWeight: '900', color: '#002366', letterSpacing: 2, fontSize: { xs: '0.65rem', md: '0.75rem' } }}>ALL-INCLUSIVE DETAILS</Typography>
             </Box>
-            <Typography variant="h2" sx={{ fontWeight: '1000', color: '#002366', mb: 2 }}>Package <span style={{ color: '#FFB7C5' }}>Summary</span></Typography>
-            <Typography variant="h6" sx={{ color: '#64748b', maxWidth: '700px', mx: 'auto', fontWeight: '500' }}>
+            <Typography variant="h2" sx={{ fontWeight: '1000', color: '#002366', mb: 2, fontSize: { xs: '2rem', sm: '2.8rem', md: '3.75rem' } }}>Package <span style={{ color: '#FFB7C5' }}>Summary</span></Typography>
+            <Typography variant="h6" sx={{ color: '#64748b', maxWidth: '700px', mx: 'auto', fontWeight: '500', fontSize: { xs: '0.9rem', md: '1.25rem' } }}>
               Every detail of your family journey, meticulously planned for maximum comfort and unforgettable memories.
             </Typography>
           </Box>
@@ -350,10 +350,10 @@ const ServicesPage = () => {
             </Grid>
 
             {/* 📋 INCLUSIONS & VISAS IN SLEEK HORIZONTAL LAYOUT */}
-            <Grid item xs={12} md={7} sx={{ mt: 8 }}>
-              <Paper sx={{ p: 6, borderRadius: 10, bgcolor: '#fff', border: '1px solid rgba(0,0,0,0.04)', boxShadow: '0 30px 60px rgba(0,0,0,0.03)' }}>
-                <Typography variant="h4" sx={{ fontWeight: '1000', color: '#002366', mb: 5, display: 'flex', alignItems: 'center', gap: 2 }}>
-                  <CheckIcon sx={{ color: '#4caf50', fontSize: '2.5rem' }} /> What's <span style={{ color: '#FFB7C5' }}>Included</span>
+            <Grid item xs={12} md={7} sx={{ mt: { xs: 4, md: 8 } }}>
+              <Paper sx={{ p: { xs: 3, md: 6 }, borderRadius: 10, bgcolor: '#fff', border: '1px solid rgba(0,0,0,0.04)', boxShadow: '0 30px 60px rgba(0,0,0,0.03)' }}>
+                <Typography variant="h4" sx={{ fontWeight: '1000', color: '#002366', mb: 5, display: 'flex', alignItems: 'center', gap: 2, fontSize: { xs: '1.5rem', md: '2.125rem' } }}>
+                  <CheckIcon sx={{ color: '#4caf50', fontSize: { xs: '2rem', md: '2.5rem' } }} /> What's <span style={{ color: '#FFB7C5' }}>Included</span>
                 </Typography>
                 <Grid container spacing={3}>
                   {[
@@ -364,7 +364,7 @@ const ServicesPage = () => {
                     <Grid item xs={12} sm={6} key={i}>
                       <Stack direction="row" spacing={2} alignItems="center">
                         <CheckIcon sx={{ color: '#4caf50', fontSize: '1.2rem' }} />
-                        <Typography sx={{ fontWeight: '700', color: '#64748b' }}>{text}</Typography>
+                        <Typography sx={{ fontWeight: '700', color: '#64748b', fontSize: { xs: '0.85rem', md: '1rem' } }}>{text}</Typography>
                       </Stack>
                     </Grid>
                   ))}
@@ -372,8 +372,8 @@ const ServicesPage = () => {
                 
                 <Divider sx={{ my: 6, opacity: 0.1 }} />
 
-                <Typography variant="h4" sx={{ fontWeight: '1000', color: '#002366', mb: 5, display: 'flex', alignItems: 'center', gap: 2 }}>
-                  <CancelIcon sx={{ color: '#f44336', fontSize: '2.5rem' }} /> Exclusions
+                <Typography variant="h4" sx={{ fontWeight: '1000', color: '#002366', mb: 5, display: 'flex', alignItems: 'center', gap: 2, fontSize: { xs: '1.5rem', md: '2.125rem' } }}>
+                  <CancelIcon sx={{ color: '#f44336', fontSize: { xs: '2rem', md: '2.5rem' } }} /> Exclusions
                 </Typography>
                 <Grid container spacing={3}>
                   {[
@@ -383,7 +383,7 @@ const ServicesPage = () => {
                     <Grid item xs={12} sm={6} key={i}>
                       <Stack direction="row" spacing={2} alignItems="center">
                         <CancelIcon sx={{ color: '#f44336', fontSize: '1.2rem' }} />
-                        <Typography sx={{ fontWeight: '700', color: '#64748b' }}>{text}</Typography>
+                        <Typography sx={{ fontWeight: '700', color: '#64748b', fontSize: { xs: '0.85rem', md: '1rem' } }}>{text}</Typography>
                       </Stack>
                     </Grid>
                   ))}
@@ -392,9 +392,9 @@ const ServicesPage = () => {
             </Grid>
 
             {/* 🛂 COMPACT VISA CHECKLIST CARD */}
-            <Grid item xs={12} md={5} sx={{ mt: 8 }}>
+            <Grid item xs={12} md={5} sx={{ mt: { xs: 4, md: 8 } }}>
               <Box sx={{ 
-                p: 6, borderRadius: 10, 
+                p: { xs: 4, md: 6 }, borderRadius: 10, 
                 background: 'linear-gradient(135deg, #002366 0%, #001540 100%)',
                 color: '#fff',
                 height: '100%',
@@ -403,7 +403,7 @@ const ServicesPage = () => {
               }}>
                 <Box sx={{ position: 'absolute', top: -50, right: -50, width: 200, height: 200, bgcolor: 'rgba(255,183,197,0.1)', borderRadius: '50%' }} />
                 
-                <Typography variant="h4" sx={{ fontWeight: '1000', color: '#FFB7C5', mb: 4 }}>Visa <span style={{ color: '#fff' }}>Checklist</span></Typography>
+                <Typography variant="h4" sx={{ fontWeight: '1000', color: '#FFB7C5', mb: 4, fontSize: { xs: '1.5rem', md: '2.125rem' } }}>Visa <span style={{ color: '#fff' }}>Checklist</span></Typography>
                 <Stack spacing={3}>
                   {[
                     { label: "Valid Passport", sub: "6 months validity + old passports" },
@@ -413,13 +413,13 @@ const ServicesPage = () => {
                     { label: "Work Proof", sub: "Salary certificate or NOC Letter" }
                   ].map((item, i) => (
                     <Box key={i}>
-                      <Typography variant="subtitle1" sx={{ fontWeight: '900', color: '#fff' }}>{item.label}</Typography>
-                      <Typography variant="body2" sx={{ color: '#FFB7C5', opacity: 0.8, fontWeight: '600' }}>{item.sub}</Typography>
+                      <Typography variant="subtitle1" sx={{ fontWeight: '900', color: '#fff', fontSize: { xs: '1rem', md: '1.1rem' } }}>{item.label}</Typography>
+                      <Typography variant="body2" sx={{ color: '#FFB7C5', opacity: 0.8, fontWeight: '600', fontSize: { xs: '0.75rem', md: '0.875rem' } }}>{item.sub}</Typography>
                     </Box>
                   ))}
                 </Stack>
-                <Box sx={{ mt: 8, p: 3, bgcolor: 'rgba(255,255,255,0.05)', borderRadius: 4, border: '1px solid rgba(255,255,255,0.1)' }}>
-                  <Typography variant="body2" sx={{ fontWeight: '700', textAlign: 'center' }}>
+                <Box sx={{ mt: { xs: 4, md: 8 }, p: 3, bgcolor: 'rgba(255,255,255,0.05)', borderRadius: 4, border: '1px solid rgba(255,255,255,0.1)' }}>
+                  <Typography variant="body2" sx={{ fontWeight: '700', textAlign: 'center', fontSize: { xs: '0.75rem', md: '0.875rem' } }}>
                     Process Time: <span style={{ color: '#FFB7C5' }}>09 - 10 Working Days</span>
                   </Typography>
                 </Box>
@@ -429,20 +429,20 @@ const ServicesPage = () => {
             {/* 💎 CALL TO ACTION */}
             <Grid item xs={12}>
               <Box sx={{ 
-                mt: 10, p: 8, borderRadius: 12, 
+                mt: { xs: 6, md: 10 }, p: { xs: 4, md: 8 }, borderRadius: 12, 
                 background: 'linear-gradient(to right, rgba(255,183,197,0.05), rgba(0,35,102,0.05))',
                 textAlign: 'center',
                 border: '1px solid rgba(0,0,0,0.04)'
               }}>
-                <Typography variant="h2" sx={{ fontWeight: '1000', color: '#002366', mb: 3 }}>Ready for the <span style={{ color: '#FFB7C5' }}>Journey?</span></Typography>
-                <Typography variant="h5" sx={{ color: '#64748b', mb: 6, fontWeight: '500' }}>Speak to our Japan experts and customize your family adventure.</Typography>
+                <Typography variant="h2" sx={{ fontWeight: '1000', color: '#002366', mb: 3, fontSize: { xs: '1.8rem', sm: '2.5rem', md: '3.75rem' } }}>Ready for the <span style={{ color: '#FFB7C5' }}>Journey?</span></Typography>
+                <Typography variant="h5" sx={{ color: '#64748b', mb: { xs: 4, md: 6 }, fontWeight: '500', fontSize: { xs: '1rem', md: '1.5rem' } }}>Speak to our Japan experts and customize your family adventure.</Typography>
                 
                 <Stack direction={{ xs: 'column', sm: 'row' }} spacing={3} justifyContent="center">
                   <Button 
                     variant="contained" 
                     size="large"
                     sx={{ 
-                      bgcolor: '#002366', px: 8, py: 2.5, borderRadius: 4, fontWeight: '900', fontSize: '1.2rem',
+                      bgcolor: '#002366', px: { xs: 4, md: 8 }, py: 2.5, borderRadius: 4, fontWeight: '900', fontSize: { xs: '1rem', md: '1.2rem' },
                       '&:hover': { bgcolor: '#001a4d' }
                     }}
                   >
@@ -452,7 +452,7 @@ const ServicesPage = () => {
                     variant="outlined" 
                     size="large"
                     sx={{ 
-                      borderColor: '#002366', color: '#002366', px: 8, py: 2.5, borderRadius: 4, fontWeight: '900', fontSize: '1.2rem',
+                      borderColor: '#002366', color: '#002366', px: { xs: 4, md: 8 }, py: 2.5, borderRadius: 4, fontWeight: '900', fontSize: { xs: '1rem', md: '1.2rem' },
                       borderWidth: 2, '&:hover': { borderWidth: 2, borderColor: '#001a4d' }
                     }}
                   >

@@ -68,7 +68,17 @@ const Footer = () => {
             <LocationOn className="footer-contact-icon" />
             <div>
               <Typography variant="body2" sx={{ fontWeight: '800', color: '#FFB7C5', mb: 0.5 }}>JAPAN (HQ)</Typography>
-              <span>Tochigi-Ken, Oyama-shi, Japan</span>
+              <a 
+                href="https://www.google.com/maps/search/?api=1&query=Tochigi-Ken,+Oyama-shi,+Japan" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                style={{ color: 'inherit', textDecoration: 'none' }}
+              >
+                <span>Tochigi-Ken, Oyama-shi, Japan</span>
+                <Typography variant="caption" sx={{ display: 'block', color: '#FFB7C5', mt: 0.5, fontWeight: '700', '&:hover': { textDecoration: 'underline' } }}>
+                  VIEW ON MAPS →
+                </Typography>
+              </a>
             </div>
           </div>
           <div className="footer-contact-item">
