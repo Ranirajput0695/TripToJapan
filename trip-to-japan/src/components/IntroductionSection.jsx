@@ -31,10 +31,7 @@ const IntroductionSection = () => {
       <style jsx="true">{`
         .intro-section {
           background-color: #ffffff;
-          background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('/japan_travel_hero_1776955286433.png');
-          background-size: cover;
-          background-position: center;
-          color: #000;
+          color: #1a1a1a;
           padding: 100px 0;
           position: relative;
           overflow: hidden;
@@ -47,7 +44,7 @@ const IntroductionSection = () => {
           right: -100px;
           width: 400px;
           height: 400px;
-          background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+          background: radial-gradient(circle, rgba(255, 183, 197, 0.1) 0%, transparent 70%);
           border-radius: 50%;
           pointer-events: none;
         }
@@ -66,15 +63,15 @@ const IntroductionSection = () => {
 
         .badge {
           display: inline-block;
-          background: #FFD700;
-          color: #000;
+          background: #FFB7C5;
+          color: #002366;
           padding: 8px 16px;
           border-radius: 50px;
           font-size: 12px;
           font-weight: 700;
           letter-spacing: 2px;
           margin-bottom: 24px;
-          box-shadow: 0 4px 12px rgba(255, 215, 0, 0.2);
+          box-shadow: 0 4px 12px rgba(255, 183, 197, 0.2);
           animation: fadeInDown 0.8s ease-out;
         }
 
@@ -87,14 +84,14 @@ const IntroductionSection = () => {
         }
 
         .highlight {
-          color: #FFD700;
-          text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          color: #FFB7C5;
+          text-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
         .description {
           font-size: 18px;
           line-height: 1.8;
-          color: rgba(0, 0, 0, 0.7);
+          color: rgba(0, 0, 0, 0.6);
           margin-bottom: 48px;
           animation: fadeInUp 1s ease-out;
         }
@@ -108,7 +105,7 @@ const IntroductionSection = () => {
         }
 
         .info-item {
-          background: rgba(0, 0, 0, 0.02);
+          background: #f8fafc;
           padding: 30px;
           border-radius: 20px;
           border: 1px solid rgba(0, 0, 0, 0.05);
@@ -116,9 +113,10 @@ const IntroductionSection = () => {
         }
 
         .info-item:hover {
-          background: rgba(0, 0, 0, 0.04);
-          border-color: rgba(255, 215, 0, 0.3);
+          background: #fff;
+          border-color: rgba(255, 183, 197, 0.5);
           transform: translateY(-5px);
+          box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
         .info-icon {

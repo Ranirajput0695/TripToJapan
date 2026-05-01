@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { db } from "../firebaseConfig";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import "./QuickInquiryModal.css";
 
 const QuickInquiryModal = ({ isOpen, onClose }) => {
   const [formData, setFormData] = useState({
-    fullName: "",
     phone: "",
     email: "",
+    adults: "1",
+    children: "0",
     message: "Quick Inquiry from Header",
   });
 
-  const [status, setStatus] = useState({ submitting: false, msg: "" });
-
-  if (!isOpen) return null;
+  const [status, setStatus] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,60 +20,35 @@ const QuickInquiryModal = ({ isOpen, onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setStatus({ submitting: true, msg: "" });
+    setStatus("Sending...");
 
     try {
-      const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:5000";
-      await axios.post(`${API_URL}/api/inquiries`, formData);
-
-      setStatus({ submitting: false, msg: "Success! We will call you back." });
-
+      await addDoc(collection(db, "inquiries"), {
+        ...formData,
+        timestamp: serverTimestamp(),
+      });
+      setStatus("Thank you! We will contact you soon.");
       setTimeout(() => {
         onClose();
-        setStatus({ submitting: false, msg: "" });
-        setFormData({ fullName: "", phone: "", email: "", message: "Quick Inquiry from Header" });
+        setFormData({ phone: "", email: "", adults: "1", children: "0", message: "Quick Inquiry from Header" });
+        setStatus("");
       }, 2000);
     } catch (error) {
-      const errorMsg = error.response?.data?.message || "Error. Please try again.";
-      setStatus({ submitting: false, msg: errorMsg });
+      console.error("Error adding document: ", error);
+      setStatus("Error sending inquiry. Please try again.");
     }
-
   };
 
+  if (!isOpen) return null;
+
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="close-btn" onClick={onClose}>&times;</button>
-        <h3>Connect With Us</h3>
-        <p>Choose how you'd like to reach our experts:</p>
-
-        <div className="contact-options">
-          <a href="tel:+919560439303" className="contact-btn india-call">
-            <span className="btn-label">Call India</span>
-            <span className="btn-number">+91 9560439303</span>
-          </a>
-          <a href="tel:+819032109839" className="contact-btn japan-call">
-            <span className="btn-label">Call Japan</span>
-            <span className="btn-number">+81 9032109839</span>
-          </a>
-          <a href="https://wa.me/919560439303" className="contact-btn whatsapp-btn" target="_blank" rel="noreferrer">
-            <span className="btn-label">WhatsApp Us</span>
-            <span className="btn-number">Chat Now</span>
-          </a>
-        </div>
-
-        <div className="divider"><span>OR SEND AN INQUIRY</span></div>
+    <div className="modal-overlay">
+      <div className="modal-content">
+        <button className="close-button" onClick={onClose}>&times;</button>
+        <h2>Plan Your <span className="highlight">Japan</span> Trip</h2>
+        <p>Fill in your details and our experts will call you back.</p>
         
         <form onSubmit={handleSubmit}>
-
-          <input
-            type="text"
-            name="fullName"
-            placeholder="Your Name"
-            value={formData.fullName}
-            onChange={handleChange}
-            required
-          />
           <input
             type="tel"
             name="phone"
@@ -90,11 +65,29 @@ const QuickInquiryModal = ({ isOpen, onClose }) => {
             onChange={handleChange}
             required
           />
-          <button type="submit" disabled={status.submitting}>
-            {status.submitting ? "Sending..." : "Submit"}
-          </button>
+
+          <div className="form-row">
+            <div className="input-group">
+              <label>Adults</label>
+              <select name="adults" value={formData.adults} onChange={handleChange}>
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, "10+"].map(num => (
+                  <option key={num} value={num}>{num}</option>
+                ))}
+              </select>
+            </div>
+            <div className="input-group">
+              <label>Children</label>
+              <select name="children" value={formData.children} onChange={handleChange}>
+                {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "10+"].map(num => (
+                  <option key={num} value={num}>{num}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <button type="submit">BOOK A CALL NOW</button>
         </form>
-        {status.msg && <p className="status-message">{status.msg}</p>}
+        {status && <p className="status-message">{status}</p>}
       </div>
     </div>
   );

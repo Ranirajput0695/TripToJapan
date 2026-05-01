@@ -1,7 +1,7 @@
 import React from "react";
 import { 
   FiTruck, FiMap, FiUsers, FiTag, FiCalendar, FiCompass,
-  FiCheckCircle, FiShield, FiSmile, FiDollarSign, FiMessageCircle, FiHeart
+  FiShield, FiSmile, FiDollarSign, FiMessageCircle, FiHeart
 } from "react-icons/fi";
 
 const ServicesAndDestinations = () => {
@@ -90,7 +90,7 @@ const ServicesAndDestinations = () => {
       <style jsx="true">{`
         .services-destinations {
           padding: 80px 0;
-          background-color: #fff;
+          background-color: #ffffff;
         }
 
         .container {
@@ -110,7 +110,7 @@ const ServicesAndDestinations = () => {
 
         .subtitle {
           display: block;
-          color: #FFD700;
+          color: #002366;
           font-weight: 800;
           letter-spacing: 2px;
           font-size: 12px;
@@ -124,8 +124,8 @@ const ServicesAndDestinations = () => {
         }
 
         .highlight {
-          color: #FFD700;
-          text-shadow: 0 2px 4px rgba(0,0,0,0.05);
+          color: #FFB7C5;
+          text-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
 
         /* Services Grid */
@@ -138,7 +138,7 @@ const ServicesAndDestinations = () => {
         .service-card {
           background: #fdfdfd;
           padding: 40px 30px;
-          border-radius: 20px;
+          border-radius: 24px;
           border: 1px solid #f0f0f0;
           transition: all 0.3s ease;
           text-align: center;
@@ -146,13 +146,13 @@ const ServicesAndDestinations = () => {
 
         .service-card:hover {
           transform: translateY(-5px);
-          border-color: #FFD700;
+          border-color: #FFB7C5;
           box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
         .service-icon {
           font-size: 32px;
-          color: #FFD700;
+          color: #FFB7C5;
           margin-bottom: 20px;
         }
 
@@ -160,7 +160,7 @@ const ServicesAndDestinations = () => {
           font-size: 18px;
           font-weight: 700;
           margin-bottom: 12px;
-          color: #1a1a1a;
+          color: #002366;
         }
 
         .service-card-desc {
@@ -178,30 +178,30 @@ const ServicesAndDestinations = () => {
         }
 
         .dest-pill {
-          background: #f8f8f8;
+          background: #f8fafc;
           padding: 12px 25px;
           border-radius: 50px;
           font-weight: 600;
           font-size: 15px;
-          color: #333;
+          color: #002366;
           display: flex;
           align-items: center;
           gap: 10px;
-          border: 1px solid #eee;
+          border: 1px solid #e2e8f0;
           transition: all 0.3s ease;
         }
 
         .dest-pill:hover {
-          background: #fff;
-          border-color: #FFD700;
-          color: #000;
+          background: #FFB7C5;
+          border-color: #FFB7C5;
+          color: #002366;
           transform: scale(1.05);
         }
 
         .dest-dot {
           width: 8px;
           height: 8px;
-          background: #FFD700;
+          background: #FFB7C5;
           border-radius: 50%;
         }
 
@@ -217,19 +217,20 @@ const ServicesAndDestinations = () => {
           gap: 20px;
           background: #fff;
           padding: 25px;
-          border-radius: 15px;
-          border: 1px solid #f5f5f5;
+          border-radius: 20px;
+          border: 1px solid #f0f0f0;
           transition: all 0.3s ease;
         }
 
         .why-us-card:hover {
           background: #fdfdfd;
-          border-color: #FFD700;
+          border-color: #FFB7C5;
+          box-shadow: 0 5px 15px rgba(0,0,0,0.02);
         }
 
         .why-us-icon {
           font-size: 24px;
-          color: #FFD700;
+          color: #FFB7C5;
           margin-top: 5px;
         }
 
@@ -237,7 +238,7 @@ const ServicesAndDestinations = () => {
           font-size: 17px;
           font-weight: 700;
           margin-bottom: 8px;
-          color: #1a1a1a;
+          color: #002366;
         }
 
         .why-us-card-desc {
@@ -247,10 +248,11 @@ const ServicesAndDestinations = () => {
         }
 
         .why-us-block {
-          background: #f9f9f9;
+          background: #f8fafc;
           padding: 60px 40px;
           border-radius: 40px;
           margin-bottom: 0;
+          border: 1px solid #e2e8f0;
         }
 
         @media (max-width: 768px) {

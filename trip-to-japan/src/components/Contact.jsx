@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
-import "./Contact.css"; // We'll create this for styling
+import { db } from "../firebaseConfig";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import "./Contact.css";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -25,11 +26,19 @@ const Contact = () => {
     });
   };
 
-  const handleResponse = (status, msg) => {
-    if (status === 200 || status === 201) {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus({ ...status, submitting: true });
+
+    try {
+      await addDoc(collection(db, "inquiries"), {
+        ...formData,
+        timestamp: serverTimestamp(),
+      });
+
       setStatus({
         submitting: false,
-        info: { error: false, msg: msg },
+        info: { error: false, msg: "Thank you! Your inquiry has been sent." },
       });
 
       // Construct WhatsApp Message
@@ -45,7 +54,6 @@ Message: ${formData.message}`;
       const encodedMsg = encodeURIComponent(whatsappMsg);
       const whatsappURL = `https://wa.me/919560439303?text=${encodedMsg}`;
       
-      // Redirect after a short delay
       setTimeout(() => {
         window.open(whatsappURL, "_blank");
       }, 1500);
@@ -59,37 +67,19 @@ Message: ${formData.message}`;
         services: "Standard Tour",
         message: "",
       });
-    } else {
-
+    } catch (error) {
+      console.error("Error adding document: ", error);
       setStatus({
         submitting: false,
-        info: { error: true, msg: msg },
+        info: { error: true, msg: "Something went wrong. Please try again." },
       });
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus({ ...status, submitting: true });
-
-    try {
-      const API_URL = import.meta.env.VITE_API_URL || "http://127.0.0.1:5000";
-      const res = await axios.post(`${API_URL}/api/inquiries`, formData);
-
-      handleResponse(res.status, res.data.message);
-    } catch (error) {
-
-      handleResponse(
-        error.response?.status || 500,
-        error.response?.data?.message || "Something went wrong. Please try again."
-      );
     }
   };
 
   return (
     <div className="contact-container">
       <div className="contact-card">
-        <h2 className="contact-title">Plan Your Dream Trip</h2>
+        <h2 className="contact-title">Plan Your <span className="highlight">Dream Trip</span></h2>
         <p className="contact-subtitle">Fill out the form below and our experts will get back to you shortly.</p>
 
         <form onSubmit={handleSubmit} className="contact-form">
@@ -101,7 +91,7 @@ Message: ${formData.message}`;
               value={formData.fullName}
               onChange={handleChange}
               required
-              placeholder="John Doe"
+              placeholder="Your Name"
             />
           </div>
 
@@ -114,7 +104,7 @@ Message: ${formData.message}`;
                 value={formData.email}
                 onChange={handleChange}
                 required
-                placeholder="john@example.com"
+                placeholder="email@example.com"
               />
             </div>
             <div className="form-group">
@@ -125,7 +115,7 @@ Message: ${formData.message}`;
                 value={formData.phone}
                 onChange={handleChange}
                 required
-                placeholder="+91 98765 43210"
+                placeholder="+91 XXXXX XXXXX"
               />
             </div>
           </div>

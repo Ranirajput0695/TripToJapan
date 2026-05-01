@@ -16,119 +16,157 @@ import {
   DirectionsCar as SedanIcon, 
   AirportShuttle as VanIcon, 
   DirectionsBus as BusIcon,
-  CheckCircle as CheckIcon,
-  LocalTaxi as TaxiIcon
+  Verified as VerifiedIcon,
+  Person as DriverIcon,
+  History as HistoryIcon,
+  SupportAgent as SupportIcon,
+  FlightTakeoff as FlightIcon,
+  Map as MapIcon,
+  Group as GroupIcon
 } from "@mui/icons-material";
 
+// Images removed
+
 const vehicles = [
-  { 
-    name: "Sedan", 
-    capacity: "1–3 Passengers", 
-    icon: <SedanIcon sx={{ fontSize: 40 }} />, 
-    desc: "Suitable for airport transfers and short city travel. Comfortable and efficient for couples or solo travelers.",
-    image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=800&q=80"
+  {
+    type: "Toyota Alphard / Vellfire",
+    capacity: "5-6 Passengers",
+    category: "Luxury MPV",
+    features: ["Leather Seats", "Dual AC", "Spacious Legroom", "Free Wi-Fi"],
+    icon: <SedanIcon />,
+    tag: "MOST POPULAR"
   },
-  { 
-    name: "Alphard", 
-    capacity: "1–5 Passengers", 
-    icon: <TaxiIcon sx={{ fontSize: 40 }} />, 
-    desc: "Luxury vehicle ideal for families. Features premium interiors and extra legroom for a high-end experience.",
-    tag: "Luxury Choice",
-    image: "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=800&q=80"
+  {
+    type: "Toyota Hiace (Grand Cabin)",
+    capacity: "9-13 Passengers",
+    category: "Small Van",
+    features: ["High Roof", "Large Luggage Space", "Premium Audio", "English Speaking Driver"],
+    icon: <VanIcon />,
+    tag: "BEST FOR FAMILIES"
   },
-  { 
-    name: "Hiace Van", 
-    capacity: "5–9 Passengers", 
-    icon: <VanIcon sx={{ fontSize: 40 }} />, 
-    desc: "Comfortable for small groups. Perfect for family outings or small corporate teams with luggage.",
-    image: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&w=800&q=80"
-  },
-  { 
-    name: "Mini Bus", 
-    capacity: "10–18 Passengers", 
-    icon: <BusIcon sx={{ fontSize: 40 }} />, 
-    desc: "Perfect for medium-sized groups. Ideal for group sightseeing and intercity transfers.",
-    image: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80"
-  },
-  { 
-    name: "Coach Bus", 
-    capacity: "20–45 Passengers", 
-    icon: <BusIcon sx={{ fontSize: 50 }} />, 
-    desc: "Best for large group tours. Full-sized coaches equipped for long-distance travel across Japan.",
-    tag: "Large Groups",
-    image: "https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=800&q=80"
+  {
+    type: "Micro Bus / Large Bus",
+    capacity: "18-45 Passengers",
+    category: "Coach",
+    features: ["Group Travel Specialist", "Professional Captain", "Under-seat Storage", "PA System"],
+    icon: <BusIcon />,
+    tag: "GROUP TRAVEL"
   }
 ];
 
 const TransportPage = () => {
   return (
-    <Box sx={{ pt: { xs: 12, md: 18 }, pb: 10, bgcolor: "#fff" }}>
-      <Container maxWidth="lg">
-        
-        {/* 📋 HEADER */}
-        <Box sx={{ mb: 10, textAlign: "center" }}>
-          <Typography variant="overline" sx={{ color: "#FFD700", fontWeight: "800", letterSpacing: 2 }}>
-            TRANSPORT & LOGISTICS
-          </Typography>
-          <Typography variant="h2" fontWeight="800" sx={{ mb: 2 }}>
-            Private <span style={{ color: "#FFD700" }}>Transportation</span> Services
-          </Typography>
-          <Typography variant="h6" color="text.secondary" sx={{ maxWidth: "800px", mx: "auto" }}>
-            We provide reliable private transportation services across Japan with professional 
-            drivers and well-maintained vehicles for every group size.
-          </Typography>
-        </Box>
+    <Box sx={{ pt: { xs: 16, md: 22 }, pb: 10, bgcolor: "#fff0f5" }}>
+      
+      {/* 🚀 PAGE HEADER */}
+      <Box sx={{ textAlign: "center", mb: 10 }}>
+        <Typography variant="overline" sx={{ letterSpacing: 4, color: "#002366", fontWeight: "800" }}>
+          PREMIUM FLEET
+        </Typography>
+        <Typography variant="h2" fontWeight="900" sx={{ mt: 1, mb: 3 }}>
+          Transportation <span style={{ color: "#FFB7C5" }}>Services</span>
+        </Typography>
+        <Typography variant="body1" color="text.secondary" sx={{ maxWidth: "700px", mx: "auto", fontSize: "1.1rem" }}>
+          Luxury, comfort, and reliability across all major cities in Japan with our professional fleet.
+        </Typography>
+      </Box>
 
+      <Container maxWidth="lg">
         {/* 🚗 VEHICLE GRID */}
-        <Grid container spacing={4}>
+        <Grid container spacing={4} sx={{ mb: 15 }}>
           {vehicles.map((v, i) => (
-            <Grid item xs={12} md={i < 2 ? 6 : 4} key={v.name}>
-              <Card sx={{ height: "100%", borderRadius: 5, overflow: "hidden", border: "1px solid #eee", display: "flex", flexDirection: "column" }}>
-                <CardMedia component="img" height="240" image={v.image} alt={v.name} />
-                <CardContent sx={{ p: 4, flexGrow: 1 }}>
-                  <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 2 }}>
-                    <Box sx={{ color: "#FFD700" }}>{v.icon}</Box>
-                    {v.tag && <Chip label={v.tag} size="small" sx={{ bgcolor: "#FFD700", color: "#000", fontWeight: "700" }} />}
-                  </Box>
-                  <Typography variant="h4" fontWeight="800" gutterBottom>{v.name}</Typography>
-                  <Typography variant="subtitle1" sx={{ color: "#FFD700", fontWeight: "700", mb: 2 }}>
-                    Capacity: {v.capacity}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{ lineHeight: 1.7 }}>
-                    {v.desc}
-                  </Typography>
+            <Grid item xs={12} md={4} key={i}>
+              <Card sx={{ height: "100%", borderRadius: 6, boxShadow: "0 10px 30px rgba(0,0,0,0.05)", overflow: "hidden" }}>
+                <Box sx={{ height: "200px", bgcolor: "#002366", color: "#FFB7C5", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                   {React.cloneElement(v.icon, { sx: { fontSize: 80 } })}
+                </Box>
+                <CardContent sx={{ p: 4 }}>
+                  <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 2 }}>
+                    <Typography variant="subtitle2" color="#FFB7C5" fontWeight="800">{v.category}</Typography>
+                    {v.tag && <Chip label={v.tag} size="small" sx={{ bgcolor: "#FFB7C5", color: "#002366", fontWeight: "700" }} />}
+                  </Stack>
+                  <Typography variant="h5" fontWeight="800" gutterBottom>{v.type}</Typography>
+                  <Typography variant="body1" fontWeight="700" color="text.secondary" sx={{ mb: 3 }}>{v.capacity}</Typography>
+                  
+                  <Stack spacing={1.5}>
+                    {v.features.map((f, idx) => (
+                      <Box key={idx} sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+                        <VerifiedIcon sx={{ color: "#FFB7C5", fontSize: 18 }} />
+                        <Typography variant="body2" fontWeight="600">{f}</Typography>
+                      </Box>
+                    ))}
+                  </Stack>
+
+                  <Button 
+                    fullWidth 
+                    variant="contained" 
+                    href="/contact"
+                    sx={{ mt: 4, py: 1.5, borderRadius: 2, bgcolor: "#002366", color: "#fff", fontWeight: "800", "&:hover": { bgcolor: "#1a237e" } }}
+                  >
+                    BOOK THIS VEHICLE
+                  </Button>
                 </CardContent>
               </Card>
             </Grid>
           ))}
         </Grid>
 
-        {/* 📍 SERVICES LIST */}
-        <Box sx={{ mt: 15 }}>
-          <Typography variant="h3" textAlign="center" fontWeight="800" sx={{ mb: 8 }}>
-            Transfer Services Available
-          </Typography>
-          <Grid container spacing={3}>
-            {["Airport Transfers", "Hotel Transfers", "Intercity Transfers", "Full Day Vehicle Hire", "Multi-Day Transport"].map((s) => (
-              <Grid item xs={12} sm={6} md={4} key={s}>
-                <Paper sx={{ p: 3, display: "flex", alignItems: "center", gap: 2, borderRadius: 3, bgcolor: "#f8fafc", border: "1px solid #e2e8f0" }}>
-                  <CheckIcon sx={{ color: "#FFD700" }} />
-                  <Typography variant="h6" fontWeight="700">{s}</Typography>
-                </Paper>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
+        {/* 🏆 SERVICE TYPES */}
+        <Grid container spacing={4}>
+          {[
+            { title: "Airport Transfers", icon: <FlightIcon />, desc: "Punctual meet & greet services at Narita, Haneda, Kansai, and more." },
+            { title: "Sightseeing", icon: <MapIcon />, desc: "Full-day private tours with expert drivers in Tokyo, Kyoto, and Osaka." },
+            { title: "Group Charters", icon: <GroupIcon />, desc: "Complete logistics for corporate events, weddings, and school trips." }
+          ].map((s, i) => (
+            <Grid item xs={12} md={4} key={i}>
+              <Paper sx={{ p: 4, textAlign: "center", height: "100%", borderRadius: 5, border: "1px solid #e2e8f0" }}>
+                <Box sx={{ color: "#FFB7C5", mb: 2 }}>{s.icon}</Box>
+                <Typography variant="h5" fontWeight="800" gutterBottom>{s.title}</Typography>
+                <Typography variant="body2" color="text.secondary">{s.desc}</Typography>
+              </Paper>
+            </Grid>
+          ))}
+        </Grid>
 
-        {/* 📞 CTA */}
-        <Box sx={{ mt: 15, bgcolor: "#1e293b", color: "#fff", p: { xs: 4, md: 8 }, borderRadius: 6, textAlign: "center" }}>
-          <Typography variant="h3" fontWeight="800" gutterBottom>Need a Custom Transport Plan?</Typography>
-          <Typography variant="h6" sx={{ opacity: 0.7, mb: 5 }}>
-            From luxury sedans to 45-seater coaches, we have the right vehicle for your journey.
-          </Typography>
-          <Button variant="contained" href="/contact" sx={{ bgcolor: "#FFD700", color: "#000", px: 8, py: 2, borderRadius: 3, fontWeight: "800" }}>
-            BOOK TRANSPORT NOW
-          </Button>
+        {/* 🛡️ WHY BOOK WITH US */}
+        <Box sx={{ mt: 15, p: { xs: 4, md: 8 }, bgcolor: "#002366", borderRadius: 8, color: "#fff" }}>
+           <Grid container spacing={4} alignItems="center">
+             <Grid item xs={12} md={6}>
+               <Typography variant="h3" fontWeight="900" gutterBottom>
+                 Reliable <span style={{ color: "#FFB7C5" }}>Ground Handling</span>
+               </Typography>
+               <Typography variant="body1" sx={{ opacity: 0.8, fontSize: "1.1rem", mb: 4 }}>
+                 As a Japan-based company, we manage our fleet directly. No middlemen, no confusion—just high-quality service you can trust.
+               </Typography>
+               <Stack spacing={3}>
+                 {[
+                   { icon: <DriverIcon />, text: "Professional & Courteous Drivers" },
+                   { icon: <HistoryIcon />, text: "Real-time Tracking & Monitoring" },
+                   { icon: <SupportIcon />, text: "24/7 Dedicated Support Hotline" }
+                 ].map((item, i) => (
+                   <Box key={i} sx={{ display: "flex", alignItems: "center", gap: 3 }}>
+                     <Box sx={{ color: "#FFB7C5" }}>{item.icon}</Box>
+                     <Typography variant="subtitle1" fontWeight="700">{item.text}</Typography>
+                   </Box>
+                 ))}
+               </Stack>
+             </Grid>
+             <Grid item xs={12} md={6}>
+                <Paper 
+                  elevation={0} 
+                  sx={{ 
+                    p: 5, borderRadius: 6, bgcolor: "rgba(255,255,255,0.05)", 
+                    border: "1px solid rgba(255,255,255,0.1)", textAlign: "center"
+                  }}
+                >
+                  <Typography variant="h4" fontWeight="800" sx={{ mb: 2 }}>Ready to Book?</Typography>
+                  <Typography variant="body1" sx={{ mb: 4, opacity: 0.7 }}>Get a customized transport quote for your group within 24 hours.</Typography>
+                  <Button variant="contained" size="large" href="/contact" sx={{ bgcolor: "#FFB7C5", color: "#002366", px: 6, py: 2, borderRadius: 3, fontWeight: "900" }}>
+                    GET QUOTE NOW
+                  </Button>
+                </Paper>
+             </Grid>
+           </Grid>
         </Box>
 
       </Container>

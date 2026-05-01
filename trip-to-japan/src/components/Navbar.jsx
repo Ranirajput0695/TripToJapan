@@ -8,16 +8,30 @@ import {
   useMediaQuery,
   useTheme,
   Collapse,
-  Paper
+  Paper,
+  Typography
 } from "@mui/material";
-import { Menu as MenuIcon, Close as CloseIcon } from "@mui/icons-material";
+import { Menu as MenuIcon, Close as CloseIcon, Phone as PhoneIcon, QuestionAnswer as ChatIcon } from "@mui/icons-material";
 
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const location = useLocation();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location]);
 
   const navLinks = [
     { title: "Home", path: "/" },
@@ -27,163 +41,137 @@ const Navbar = () => {
     { title: "About Us", path: "/about" },
   ];
 
-  // Close menu on route change
-  useEffect(() => {
-    setIsMenuOpen(false);
-  }, [location]);
-
-  // Prevent scroll when menu is open
-  useEffect(() => {
-    if (isMenuOpen && isMobile) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-    return () => { document.body.style.overflow = "auto"; };
-  }, [isMenuOpen, isMobile]);
-
   return (
     <header style={{ 
       position: "fixed", 
       top: 0, 
       width: "100%", 
       zIndex: 1000,
-      height: isMobile ? "85px" : "110px" // Fixed height to prevent jumps
+      transition: "box-shadow 0.3s ease",
+      boxShadow: scrolled ? "0 10px 30px rgba(0,0,0,0.15)" : "none"
     }}>
       
-      {/* 🔝 TOP BAR */}
+      {/* 🔝 TOP BAR (Now Fixed Height to prevent "Hilling") */}
       <div style={{ 
-        background: "#000", 
-        color: "#FFD700", 
-        borderBottom: "1px solid #222",
+        background: "#002366", 
+        color: "#FFB7C5", 
         height: "35px",
         display: "flex",
-        alignItems: "center"
+        alignItems: "center",
+        borderBottom: "1px solid rgba(255, 183, 197, 0.1)"
       }}>
         <div style={containerStyle}>
-          <span style={{ fontSize: isMobile ? "9px" : "12px", fontWeight: "600", letterSpacing: "0.5px" }}>
-            PREMIUM JAPAN TOUR OPERATOR FOR INDIANS
+          <span style={{ fontSize: isMobile ? "9px" : "12px", fontWeight: "800", letterSpacing: "1.5px" }}>
+            JAPAN'S #1 TRUSTED TOUR OPERATOR
           </span>
+          {!isMobile && (
+            <span style={{ fontSize: "11px", fontWeight: "700" }}>
+              24/7 SUPPORT: +91 9560439303
+            </span>
+          )}
         </div>
       </div>
 
-      {/* 🔻 MAIN NAVBAR */}
+      {/* 🔻 MAIN NAVBAR (Fixed Height for Stability) */}
       <div style={{ 
-        background: "rgba(0, 0, 0, 0.9)", 
-        backdropFilter: "blur(15px)", 
-        borderBottom: "1px solid rgba(255,215,0,0.1)",
-        height: isMobile ? "50px" : "75px",
+        background: scrolled ? "rgba(255, 183, 197, 0.98)" : "#FFB7C5", 
+        backdropFilter: scrolled ? "blur(10px)" : "none",
+        height: isMobile ? "75px" : "100px",
         display: "flex",
-        alignItems: "center"
+        alignItems: "center",
+        borderBottom: "3px solid #002366", 
+        transition: "background 0.3s ease"
       }}>
         <div style={containerStyle}>
           
-          {/* Logo */}
-          <Link to="/" style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none" }}>
+          {/* Logo & Brand */}
+          <Link to="/" style={{ display: "flex", alignItems: "center", gap: isMobile ? "12px" : "20px", textDecoration: "none" }}>
             <img
               src={logo}
               alt="logo"
               style={{
-                height: isMobile ? "32px" : "45px",
-                width: isMobile ? "32px" : "45px",        
-                borderRadius: "50%",  
+                height: isMobile ? "60px" : "85px",
+                width: isMobile ? "60px" : "85px",        
+                borderRadius: "50%",
                 objectFit: "cover",
-                border: "1.5px solid #FFD700"
+                border: "2.5px solid #002366",
               }}
             />
-            <span style={{ color: "#fff", fontWeight: "800", fontSize: isMobile ? "14px" : "20px", letterSpacing: "-0.5px" }}>
-              TRIP TO <span style={{ color: "#FFD700" }}>JAPAN</span>
-            </span>
+            <Typography sx={{ 
+              color: "#002366", 
+              fontWeight: "900", 
+              fontSize: isMobile ? "20px" : "36px", 
+              letterSpacing: "-1px",
+              textTransform: "uppercase"
+            }}>
+              TRIP TO JAPAN
+            </Typography>
           </Link>
 
           {/* Desktop Menu */}
           {!isMobile && (
             <nav style={{ display: "flex", alignItems: "center" }}>
               {navLinks.map((link) => (
-                <Link key={link.title} to={link.path} style={linkStyle}>{link.title}</Link>
+                <Link 
+                  key={link.title} 
+                  to={link.path} 
+                  style={{
+                    ...linkStyle,
+                    color: location.pathname === link.path ? "#fff" : "#002366",
+                    background: location.pathname === link.path ? "#002366" : "transparent",
+                    padding: "8px 16px",
+                    borderRadius: "8px",
+                  }}
+                >
+                  {link.title}
+                </Link>
               ))}
-              <button style={ctaButtonStyle} onClick={() => setIsModalOpen(true)}>Book A Call</button>
+              <button 
+                style={ctaButtonStyle} 
+                onClick={() => setIsModalOpen(true)}
+              >
+                <PhoneIcon sx={{ fontSize: 18, mr: 1 }} />
+                ENQUIRE NOW
+              </button>
             </nav>
           )}
 
           {/* Mobile Menu Icon */}
           {isMobile && (
-            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-              <IconButton 
-                onClick={() => setIsMenuOpen(!isMenuOpen)} 
-                sx={{ 
-                  color: "#FFD700", 
-                  p: 1,
-                  bgcolor: "transparent",
-                  "&:hover": { bgcolor: "rgba(255,215,0,0.1)" }
-                }}
-              >
-                {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
-              </IconButton>
-            </Box>
+            <IconButton onClick={() => setIsMenuOpen(!isMenuOpen)} sx={{ color: "#002366" }}>
+              {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
+            </IconButton>
           )}
 
         </div>
       </div>
 
-      {/* 📱 MOBILE COMPACT MENU - Floating & Stable */}
-      <Collapse 
-        in={isMenuOpen} 
-        sx={{ 
-          position: "fixed", // Changed to fixed for better stability
-          top: "90px", 
-          right: "15px", 
-          width: "calc(100% - 30px)", 
-          maxWidth: "300px",
-          zIndex: 2001 
-        }}
-      >
-        <Paper 
-          elevation={15} 
-          sx={{ 
-            bgcolor: "rgba(10, 10, 10, 0.98)", 
-            backdropFilter: "blur(20px)",
-            color: "#fff", 
-            borderRadius: 4,
-            overflow: "hidden",
-            border: "1px solid rgba(255,215,0,0.3)",
-            boxShadow: "0 20px 50px rgba(0,0,0,0.8)"
-          }}
-        >
-          <Box sx={{ p: 1.5 }}>
+      {/* 📱 MOBILE MENU */}
+      <Collapse in={isMenuOpen}>
+        <Paper elevation={0} sx={{ bgcolor: "#FFB7C5", borderRadius: 0 }}>
+          <Box sx={{ p: 2 }}>
             {navLinks.map((link) => (
               <Link 
                 key={link.title} 
                 to={link.path} 
                 style={{
                   display: "block",
-                  padding: "15px 20px",
-                  color: "#fff",
+                  padding: "15px",
+                  color: "#002366",
                   textDecoration: "none",
-                  fontWeight: "700",
-                  fontSize: "15px",
-                  borderRadius: "10px",
-                  transition: "0.2s",
-                  marginBottom: "4px"
+                  fontWeight: "800",
+                  borderBottom: "1px solid rgba(0,35,102,0.1)"
                 }}
-                className="mobile-nav-link"
               >
                 {link.title}
               </Link>
             ))}
-            <Box sx={{ p: 1, mt: 1 }}>
+            <Box sx={{ pt: 2 }}>
               <button 
-                style={{ 
-                  ...ctaButtonStyle, 
-                  width: "100%", 
-                  marginLeft: 0, 
-                  padding: "15px",
-                  borderRadius: "10px",
-                  fontSize: "16px"
-                }}
+                style={{ ...ctaButtonStyle, width: "100%", marginLeft: 0, padding: "15px", borderRadius: "12px" }}
                 onClick={() => { setIsModalOpen(true); setIsMenuOpen(false); }}
               >
-                Book A Call
+                BOOK A CALL
               </button>
             </Box>
           </Box>
@@ -191,14 +179,6 @@ const Navbar = () => {
       </Collapse>
 
       <QuickInquiryModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-
-      <style>{`
-        .mobile-nav-link:hover {
-          background: rgba(255, 215, 0, 0.15);
-          color: #FFD700 !important;
-          transform: translateX(5px);
-        }
-      `}</style>
 
     </header>
   );
@@ -215,25 +195,28 @@ const containerStyle = {
 };
 
 const linkStyle = {
-  margin: "0 15px",
+  margin: "0 5px",
   textDecoration: "none",
-  color: "#fff",
-  fontWeight: "600",
+  fontWeight: "800",
   fontSize: "14px",
-  transition: "color 0.3s ease"
+  transition: "all 0.3s ease",
+  display: "inline-block"
 };
 
 const ctaButtonStyle = {
-  background: "#FFD700",
-  color: "#000",
+  background: "#002366",
+  color: "#fff",
   border: "none",
-  padding: "10px 20px",
-  borderRadius: "8px",
-  fontWeight: "800",
+  padding: "12px 24px",
+  borderRadius: "10px",
+  fontWeight: "900",
   fontSize: "14px",
-  marginLeft: "15px",
+  marginLeft: "20px",
   cursor: "pointer",
-  transition: "all 0.3s ease"
+  transition: "all 0.3s ease",
+  boxShadow: "0 4px 15px rgba(0,35,102,0.2)",
+  display: "flex",
+  alignItems: "center"
 };
 
 export default Navbar;

@@ -127,9 +127,13 @@
 // export default App
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
+import PromotionPopup from "./components/PromotionPopup";
 import Home from "./pages/Home";
 import About from "./pages/AboutPage";
 import Itineraries from "./pages/ServicesPage";
+import ItineraryDetail from "./pages/ItineraryDetailPage";
 import Services from "./pages/AllServicesPage";
 import Transport from "./pages/TransportPage";
 import Contact from "./pages/ContactPage";
@@ -137,16 +141,21 @@ import Contact from "./pages/ContactPage";
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Navbar />
 
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/packages" element={<Itineraries />} />
+        <Route path="/itinerary-details" element={<ItineraryDetail />} />
         <Route path="/services" element={<Services />} />
         <Route path="/transport" element={<Transport />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
+
+      <Footer />
+      <PromotionPopup />
     </BrowserRouter>
   );
 }

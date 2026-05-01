@@ -5,23 +5,32 @@ const FilterBar = () => {
   return (
     <div className="filter-bar-container">
       <div className="filter-bar-content">
-        {/* Breadcrumbs removed */}
-
-
+        <div className="breadcrumb-section">
+           <div className="filter-button">
+              <FiSliders className="filter-icon" />
+              <span>FILTER TOURS</span>
+           </div>
+        </div>
         
+        <div className="sort-section">
+           <div className="sort-dropdown">
+              <span>SORT BY: POPULARITY</span>
+              <FiChevronDown className="dropdown-icon" />
+           </div>
+        </div>
       </div>
 
 
       <style jsx="true">{`
         .filter-bar-container {
-          background-color: #000000; /* Black background */
+          background-color: #002366; /* Deep Blue background */
           color: #ffffff; /* White text */
           width: 100%;
           padding: 20px 0;
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-          margin-top: 100px; /* Offset for fixed navbar */
-          border-bottom: 1px solid #222;
-          box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+          margin-top: 140px; /* Offset for fixed navbar */
+          border-bottom: 1px solid rgba(255, 183, 197, 0.2);
+          box-shadow: 0 4px 20px rgba(0,0,0,0.15);
         }
 
         .filter-bar-content {
@@ -29,7 +38,7 @@ const FilterBar = () => {
           margin: 0 auto;
           display: flex;
           justify-content: space-between;
-          align-items: flex-end;
+          align-items: center;
           padding: 0 20px;
         }
 
@@ -37,23 +46,6 @@ const FilterBar = () => {
           display: flex;
           flex-direction: column;
           gap: 15px;
-        }
-
-        .breadcrumbs {
-          font-size: 14px;
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          opacity: 0.8;
-        }
-
-        .separator {
-          opacity: 0.5;
-        }
-
-        .current-page {
-          font-weight: 700;
-          opacity: 1;
         }
 
         .filter-button {
@@ -64,15 +56,15 @@ const FilterBar = () => {
           font-size: 16px;
           cursor: pointer;
           transition: color 0.3s ease;
+          color: #FFB7C5;
         }
 
         .filter-button:hover {
-          color: #FFD700; /* Yellow hover effect */
+          color: #fff;
         }
 
         .filter-icon {
           font-size: 18px;
-          transform: rotate(90deg);
         }
 
         .sort-section {
@@ -92,12 +84,13 @@ const FilterBar = () => {
           font-size: 14px;
           transition: all 0.3s ease;
           color: #fff;
+          font-weight: 700;
         }
 
         .sort-dropdown:hover {
-          background: #FFD700; /* Yellow background on hover */
-          color: #000000; /* Black text on hover */
-          border-color: #FFD700;
+          background: #FFB7C5; /* Pink background on hover */
+          color: #002366; /* Blue text on hover */
+          border-color: #FFB7C5;
         }
 
         .dropdown-icon {
@@ -105,6 +98,9 @@ const FilterBar = () => {
         }
 
         @media (max-width: 768px) {
+          .filter-bar-container {
+            margin-top: 110px;
+          }
           .filter-bar-content {
             flex-direction: column;
             align-items: flex-start;
