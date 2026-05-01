@@ -54,10 +54,18 @@ const packages = [
   }
 ];
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 const TravelPackages = () => {
   return (
     <Box sx={{ py: 15, bgcolor: "#fff" }}>
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         <Box sx={{ textAlign: 'center', mb: 10 }}>
           <Typography variant="overline" sx={{ letterSpacing: 4, color: "#002366", fontWeight: "800" }}>
             HANDPICKED FOR YOU
@@ -67,109 +75,135 @@ const TravelPackages = () => {
           </Typography>
         </Box>
 
-        <Grid container spacing={4}>
-          {packages.map((pkg, i) => (
-            <Grid item xs={12} md={4} key={i}>
-              <Card 
-                elevation={0} 
-                sx={{ 
-                  height: "100%", 
-                  borderRadius: 6, 
-                  border: "1px solid #e2e8f0",
-                  overflow: "hidden",
-                  transition: "0.3s",
-                  "&:hover": { transform: "translateY(-10px)", boxShadow: "0 20px 40px rgba(0,0,0,0.05)" }
-                }}
-              >
-                {/* Image Box with Footer Line */}
-                <Box sx={{ position: 'relative', height: "250px" }}>
-                  <Box 
-                    component="img"
-                    src={pkg.image}
-                    sx={{ 
-                      width: '100%', 
-                      height: '100%', 
-                      objectFit: 'cover' 
-                    }}
-                  />
-                  {/* Footer Line Overlay (Grey bar from screenshot) */}
-                  {pkg.title === "Tokyo Special!!!" && (
-                    <Box sx={{ 
-                      position: 'absolute', 
-                      bottom: 0, 
-                      left: 0, 
-                      right: 0, 
-                      bgcolor: 'rgba(211, 211, 211, 0.95)', 
-                      py: 1, 
-                      textAlign: 'center',
-                      color: '#000',
-                      borderTop: '1px solid rgba(0,0,0,0.1)'
-                    }}>
-                      <Typography variant="h6" sx={{ fontWeight: '900', fontSize: '20px', lineHeight: 1.1, fontFamily: 'serif' }}>
-                        {pkg.title}
-                      </Typography>
-                      <Typography variant="body1" sx={{ fontWeight: '900', fontSize: '18px', lineHeight: 1.1, fontFamily: 'serif' }}>
-                        {pkg.duration}
-                      </Typography>
-                      <Typography variant="body2" sx={{ fontWeight: '900', fontSize: '15px', lineHeight: 1.1, fontFamily: 'serif' }}>
-                        Package Category: {pkg.category}
-                      </Typography>
-                    </Box>
-                  )}
-                </Box>
-                
-                <CardContent sx={{ p: 4 }}>
-                  {pkg.popular && (
-                    <Chip 
-                      label="MOST POPULAR" 
-                      size="small" 
-                      sx={{ bgcolor: "#FFB7C5", color: "#002366", fontWeight: "800", mb: 2, borderRadius: 1 }} 
-                    />
-                  )}
-                  <Typography variant="h5" fontWeight="800" gutterBottom>{pkg.title}</Typography>
-                  
-                  <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 3, color: "text.secondary" }}>
-                    <LocationIcon sx={{ fontSize: 18, color: "#FFB7C5" }} />
-                    <Typography variant="body2" fontWeight="600">{pkg.cities}</Typography>
-                  </Stack>
-
-                  <Divider sx={{ mb: 3 }} />
-
-                  <Stack spacing={1.5} sx={{ mb: 4 }}>
-                    {pkg.features.map((f, idx) => (
-                      <Box key={idx} sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-                        <CheckIcon sx={{ color: "#FFB7C5", fontSize: 18 }} />
-                        <Typography variant="body2" fontWeight="500">{f}</Typography>
-                      </Box>
-                    ))}
-                  </Stack>
-
-                  <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mt: "auto" }}>
-                    <Box>
-                      <Typography variant="caption" color="text.secondary">Starting From</Typography>
-                      <Typography variant="h5" fontWeight="900" color="#002366">{pkg.price}</Typography>
-                    </Box>
-                    <Button 
-                      variant="contained" 
-                      href="/contact"
+        <Box sx={{ 
+          position: 'relative',
+          '.swiper-button-next, .swiper-button-prev': {
+            color: '#002366',
+            '&::after': { fontSize: '1.2rem', fontWeight: 'bold' }
+          },
+          '.swiper-pagination-bullet-active': {
+            backgroundColor: '#FFB7C5'
+          }
+        }}>
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={30}
+            slidesPerView={1}
+            navigation={true}
+            pagination={{ clickable: true }}
+            autoplay={{ delay: 5000, disableOnInteraction: false }}
+            breakpoints={{
+              640: { slidesPerView: 1 },
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 3 },
+            }}
+            style={{ padding: '20px 10px 60px' }}
+          >
+            {packages.map((pkg, i) => (
+              <SwiperSlide key={i} style={{ height: 'auto' }}>
+                <Card 
+                  elevation={0} 
+                  sx={{ 
+                    height: "100%", 
+                    borderRadius: 6, 
+                    border: "1px solid #e2e8f0",
+                    overflow: "hidden",
+                    transition: "0.3s",
+                    display: 'flex',
+                    flexDirection: 'column',
+                    "&:hover": { transform: "translateY(-10px)", boxShadow: "0 20px 40px rgba(0,0,0,0.05)" }
+                  }}
+                >
+                  {/* Image Box with Footer Line */}
+                  <Box sx={{ position: 'relative', height: "250px", flexShrink: 0 }}>
+                    <Box 
+                      component="img"
+                      src={pkg.image}
                       sx={{ 
-                        bgcolor: "#002366", 
-                        color: "#fff", 
-                        px: 3, 
-                        py: 1, 
-                        borderRadius: 2, 
-                        fontWeight: "700",
-                        "&:hover": { bgcolor: "#FFB7C5", color: "#002366" }
+                        width: '100%', 
+                        height: '100%', 
+                        objectFit: 'cover' 
                       }}
-                    >
-                      Enquire
-                    </Button>
+                    />
+                    {/* Footer Line Overlay */}
+                    {pkg.title === "Tokyo Special!!!" && (
+                      <Box sx={{ 
+                        position: 'absolute', 
+                        bottom: 0, 
+                        left: 0, 
+                        right: 0, 
+                        bgcolor: 'rgba(211, 211, 211, 0.95)', 
+                        py: 1, 
+                        textAlign: 'center',
+                        color: '#000',
+                        borderTop: '1px solid rgba(0,0,0,0.1)'
+                      }}>
+                        <Typography variant="h6" sx={{ fontWeight: '900', fontSize: '20px', lineHeight: 1.1, fontFamily: 'serif' }}>
+                          {pkg.title}
+                        </Typography>
+                        <Typography variant="body1" sx={{ fontWeight: '900', fontSize: '18px', lineHeight: 1.1, fontFamily: 'serif' }}>
+                          {pkg.duration}
+                        </Typography>
+                        <Typography variant="body2" sx={{ fontWeight: '900', fontSize: '15px', lineHeight: 1.1, fontFamily: 'serif' }}>
+                          Package Category: {pkg.category}
+                        </Typography>
+                      </Box>
+                    )}
                   </Box>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
+                  
+                  <CardContent sx={{ p: 4, flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+                    {pkg.popular && (
+                      <Chip 
+                        label="MOST POPULAR" 
+                        size="small" 
+                        sx={{ bgcolor: "#FFB7C5", color: "#002366", fontWeight: "800", mb: 2, borderRadius: 1, alignSelf: 'flex-start' }} 
+                      />
+                    )}
+                    <Typography variant="h5" fontWeight="800" gutterBottom>{pkg.title}</Typography>
+                    
+                    <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 3, color: "text.secondary" }}>
+                      <LocationIcon sx={{ fontSize: 18, color: "#FFB7C5" }} />
+                      <Typography variant="body2" fontWeight="600">{pkg.cities}</Typography>
+                    </Stack>
+
+                    <Divider sx={{ mb: 3 }} />
+
+                    <Stack spacing={1.5} sx={{ mb: 4 }}>
+                      {pkg.features.map((f, idx) => (
+                        <Box key={idx} sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+                          <CheckIcon sx={{ color: "#FFB7C5", fontSize: 18 }} />
+                          <Typography variant="body2" fontWeight="500">{f}</Typography>
+                        </Box>
+                      ))}
+                    </Stack>
+
+                    <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mt: "auto" }}>
+                      <Box>
+                        <Typography variant="caption" color="text.secondary">Starting From</Typography>
+                        <Typography variant="h5" fontWeight="900" color="#002366">{pkg.price}</Typography>
+                      </Box>
+                      <Button 
+                        variant="contained" 
+                        href="/contact"
+                        sx={{ 
+                          bgcolor: "#002366", 
+                          color: "#fff", 
+                          px: 3, 
+                          py: 1, 
+                          borderRadius: 2, 
+                          fontWeight: "700",
+                          "&:hover": { bgcolor: "#FFB7C5", color: "#002366" }
+                        }}
+                      >
+                        Enquire
+                      </Button>
+                    </Box>
+                  </CardContent>
+                </Card>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </Box>
 
         <Box sx={{ mt: 10, p: 6, bgcolor: "#f8fafc", borderRadius: 8, textAlign: "center", border: "1px dashed #cbd5e1" }}>
            <Typography variant="h5" fontWeight="800" gutterBottom>Don't see what you're looking for?</Typography>
