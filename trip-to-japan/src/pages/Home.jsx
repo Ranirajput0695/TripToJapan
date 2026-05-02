@@ -5,20 +5,27 @@ import {
   Typography, 
   Button
 } from "@mui/material";
-import HeroCarousel from "../components/HeroCarousel";
-import IntroductionSection from "../components/IntroductionSection";
-import ServicesAndDestinations from "../components/ServicesAndDestinations";
+import Hero from "../components/Hero";
+import KeyServices from "../components/KeyServices";
+import DestinationsSection from "../components/DestinationsSection";
+import WhyChooseUs from "../components/WhyChooseUs";
 import TravelPackages from "../components/TravelPackages";
 
 const Home = () => {
   return (
-    <Box sx={{ bgcolor: "#fff", color: "#1e293b", pt: { xs: "110px", md: "140px" } }}>
+    <Box sx={{ bgcolor: "#fff", color: "#1e293b" }}>
       
-      {/* 🚀 HERO SECTION (CAROUSEL) */}
-      <HeroCarousel />
+      {/* 🚀 HERO SECTION */}
+      <Hero />
 
-      {/* 🏛 INTRODUCTION SECTION */}
-      <IntroductionSection />
+      {/* ✨ KEY SERVICES SECTION */}
+      <KeyServices />
+
+      {/* 🏯 POPULAR DESTINATIONS SECTION */}
+      <DestinationsSection />
+
+      {/* 🤔 WHY CHOOSE US SECTION */}
+      <WhyChooseUs />
 
       {/* 📦 TRAVEL PACKAGES SECTION */}
       <TravelPackages />

@@ -1,130 +1,128 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../assets/logo.png";
-import { Typography } from "@mui/material";
-import "./Footer.css";
-import {
-  Facebook,
-  Instagram,
-  LinkedIn,
-  Phone,
-  Email,
-  LocationOn,
-  ArrowForwardIos
+import { Box, Container, Grid, Typography, Stack, Divider } from "@mui/material";
+import { 
+  LocationOn as LocationIcon, 
+  Business as BusinessIcon, 
+  SupportAgent as SupportIcon,
+  Flag as MissionIcon 
 } from "@mui/icons-material";
+import logo from "../assets/logo.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="footer">
-      <div className="footer-container">
-        {/* Brand Section */}
-        <div className="footer-brand">
-          <Link to="/" className="footer-logo-container">
-            <img src={logo} alt="TripToJapan Logo" className="footer-logo" />
-            <span className="footer-brand-name">TRIP TO JAPAN</span>
-          </Link>
-          <p className="footer-description">
-            TripToJapan.in is a premium Japan-based travel service platform powered by HTC Group. 
-            We provide professional ground travel arrangements, luxury transportation, and curated 
-            sightseeing experiences across Japan.
-          </p>
-          <div className="footer-social">
-            <a href="#" className="social-icon-btn"><Facebook fontSize="small" /></a>
-            <a href="#" className="social-icon-btn"><Instagram fontSize="small" /></a>
-            <a href="#" className="social-icon-btn"><LinkedIn fontSize="small" /></a>
-          </div>
-        </div>
-
-        {/* Quick Links */}
-        <div className="footer-section">
-          <h3>Quick Links</h3>
-          <ul className="footer-links">
-            <li><Link to="/"><ArrowForwardIos sx={{ fontSize: '10px' }} /> Home</Link></li>
-            <li><Link to="/packages"><ArrowForwardIos sx={{ fontSize: '10px' }} /> Tour Packages</Link></li>
-            <li><Link to="/services"><ArrowForwardIos sx={{ fontSize: '10px' }} /> Our Services</Link></li>
-            <li><Link to="/about"><ArrowForwardIos sx={{ fontSize: '10px' }} /> About Us</Link></li>
-            <li><Link to="/contact"><ArrowForwardIos sx={{ fontSize: '10px' }} /> Contact Us</Link></li>
-          </ul>
-        </div>
-
-        {/* Services */}
-        <div className="footer-section">
-          <h3>Our Services</h3>
-          <ul className="footer-links">
-            <li><Link to="/services"><ArrowForwardIos sx={{ fontSize: '10px' }} /> Airport Transfers</Link></li>
-            <li><Link to="/services"><ArrowForwardIos sx={{ fontSize: '10px' }} /> Private Tours</Link></li>
-            <li><Link to="/services"><ArrowForwardIos sx={{ fontSize: '10px' }} /> Intercity Travel</Link></li>
-            <li><Link to="/transport"><ArrowForwardIos sx={{ fontSize: '10px' }} /> Luxury Vehicles</Link></li>
-            <li><Link to="/packages"><ArrowForwardIos sx={{ fontSize: '10px' }} /> FIT Arrangements</Link></li>
-          </ul>
-        </div>
-
-        {/* Global Presence */}
-        <div className="footer-section">
-          <h3>Global Presence</h3>
-          <div className="footer-contact-item">
-            <LocationOn className="footer-contact-icon" />
-            <div>
-              <Typography variant="body2" sx={{ fontWeight: '800', color: '#FFB7C5', mb: 0.5 }}>JAPAN (HQ)</Typography>
-              <a 
-                href="https://www.google.com/maps/search/?api=1&query=Tochigi-Ken,+Oyama-shi,+Japan" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                style={{ color: 'inherit', textDecoration: 'none' }}
-              >
-                <span>Tochigi-Ken, Oyama-shi, Japan</span>
-                <Typography variant="caption" sx={{ display: 'block', color: '#FFB7C5', mt: 0.5, fontWeight: '700', '&:hover': { textDecoration: 'underline' } }}>
-                  VIEW ON MAPS →
+    <Box component="footer" sx={{ bgcolor: "#002366", color: "#fff", pt: 8 }}>
+      <Container maxWidth="lg">
+        <Grid container spacing={6} sx={{ mb: 8 }}>
+          
+          {/* Column 1: About Us (Brief) */}
+          <Grid item xs={12} md={3}>
+            <Stack spacing={3}>
+              <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                <img src={logo} alt="Logo" style={{ height: "45px", borderRadius: "50%" }} />
+                <Typography variant="h6" fontWeight="900" color="#FFB7C5" sx={{ letterSpacing: 1 }}>
+                  TRIP TO JAPAN
                 </Typography>
-              </a>
-            </div>
-          </div>
-          <div className="footer-contact-item">
-            <LocationOn className="footer-contact-icon" />
-            <div>
-              <Typography variant="body2" sx={{ fontWeight: '800', color: '#FFB7C5', mb: 0.5 }}>USA OFFICE</Typography>
-              <span>123 Luxury Way, Beverly Hills, CA 90210</span>
-            </div>
-          </div>
-          <div className="footer-contact-item">
-            <LocationOn className="footer-contact-icon" />
-            <div>
-              <Typography variant="body2" sx={{ fontWeight: '800', color: '#FFB7C5', mb: 0.5 }}>UK OFFICE</Typography>
-              <span>45 Royal Gardens, Kensington, London</span>
-            </div>
-          </div>
-          <div className="footer-contact-item">
-            <LocationOn className="footer-contact-icon" />
-            <div>
-              <Typography variant="body2" sx={{ fontWeight: '800', color: '#FFB7C5', mb: 0.5 }}>AUSTRALIA OFFICE</Typography>
-              <span>78 Harbor View, Sydney, NSW 2000</span>
-            </div>
-          </div>
-          <div className="footer-contact-item">
-            <Phone className="footer-contact-icon" />
-            <span>+91 9560439303 (Global)</span>
-          </div>
-          <div className="footer-contact-item">
-            <Email className="footer-contact-icon" />
-            <span>info@triptojapan.in</span>
-          </div>
-        </div>
-      </div>
+              </Box>
+              <Typography variant="body2" sx={{ lineHeight: 1.8, opacity: 0.8, fontSize: "0.95rem" }}>
+                <strong>TripToJapan.in</strong> (Powered by HTC Group of Companies). 
+                Established in 2016, providing high-quality travel services across Japan.
+              </Typography>
+            </Stack>
+          </Grid>
 
-      <div className="footer-bottom">
-        <div className="footer-bottom-content">
-          <div className="copyright">
-            © {currentYear} TripToJapan.in | Powered by HTC Group of Companies. All Rights Reserved.
-          </div>
-          <div className="footer-bottom-links">
-            <Link to="/privacy">Privacy Policy</Link>
-            <Link to="/terms">Terms of Service</Link>
-          </div>
-        </div>
-      </div>
-    </footer>
+          {/* Column 2: Quick Links */}
+          <Grid item xs={12} sm={6} md={3}>
+            <Typography variant="h6" fontWeight="800" color="#FFB7C5" sx={{ mb: 3, fontSize: "1.1rem" }}>
+              QUICK LINKS
+            </Typography>
+            <Stack spacing={1.5}>
+              {[
+                { name: "Home", path: "/" },
+                { name: "About Us", path: "/about" },
+                { name: "Services", path: "/services" },
+                { name: "Destinations", path: "/destinations" },
+                { name: "Privacy Policy", path: "/privacy" },
+                { name: "Terms & Conditions", path: "/terms-and-conditions" },
+                { name: "Cancellation Policy", path: "/cancellation-policy" }
+              ].map((link) => (
+                <Link 
+                  key={link.name} 
+                  to={link.path} 
+                  style={{ 
+                    color: "rgba(255,255,255,0.7)", 
+                    textDecoration: "none",
+                    fontSize: "0.95rem",
+                    transition: "color 0.3s ease"
+                  }}
+                  onMouseOver={(e) => e.target.style.color = "#FFB7C5"}
+                  onMouseOut={(e) => e.target.style.color = "rgba(255,255,255,0.7)"}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </Stack>
+          </Grid>
+
+          {/* Column 3: Contact/Company Details */}
+          <Grid item xs={12} sm={6} md={3}>
+            <Typography variant="h6" fontWeight="800" color="#FFB7C5" sx={{ mb: 3, fontSize: "1.1rem" }}>
+              COMPANY DETAILS
+            </Typography>
+            <Stack spacing={2.5}>
+              <Box sx={{ display: "flex", gap: 2 }}>
+                <BusinessIcon sx={{ color: "#FFB7C5", fontSize: "1.2rem", mt: 0.5 }} />
+                <Box>
+                  <Typography variant="caption" sx={{ display: "block", opacity: 0.6, fontWeight: 700 }}>COMPANY</Typography>
+                  <Typography variant="body2" sx={{ fontWeight: 600 }}>HTC Group of Companies</Typography>
+                </Box>
+              </Box>
+              <Box sx={{ display: "flex", gap: 2 }}>
+                <LocationIcon sx={{ color: "#FFB7C5", fontSize: "1.2rem", mt: 0.5 }} />
+                <Box>
+                  <Typography variant="caption" sx={{ display: "block", opacity: 0.6, fontWeight: 700 }}>OFFICE</Typography>
+                  <Typography variant="body2" sx={{ fontSize: "0.85rem", lineHeight: 1.5 }}>
+                    323-0822 Tochigi-Ken, Oyama-shi Eki-Minami Cho, 4-13-17, Japan.
+                  </Typography>
+                </Box>
+              </Box>
+              <Box sx={{ display: "flex", gap: 2 }}>
+                <SupportIcon sx={{ color: "#FFB7C5", fontSize: "1.2rem", mt: 0.5 }} />
+                <Box>
+                  <Typography variant="caption" sx={{ display: "block", opacity: 0.6, fontWeight: 700 }}>SUPPORT</Typography>
+                  <Typography variant="body2" sx={{ fontWeight: 600 }}>English Support Available</Typography>
+                </Box>
+              </Box>
+            </Stack>
+          </Grid>
+
+          {/* Column 4: Mission */}
+          <Grid item xs={12} md={3}>
+            <Typography variant="h6" fontWeight="800" color="#FFB7C5" sx={{ mb: 3, fontSize: "1.1rem" }}>
+              OUR MISSION
+            </Typography>
+            <Box sx={{ position: "relative", pl: 3, borderLeft: "3px solid #FFB7C5" }}>
+              <Typography variant="body2" sx={{ fontStyle: "italic", lineHeight: 1.8, opacity: 0.8 }}>
+                "To provide dependable, high-quality travel services across Japan with professional support."
+              </Typography>
+              <MissionIcon sx={{ position: "absolute", top: -10, left: -10, color: "rgba(255,183,197,0.1)", fontSize: "3rem" }} />
+            </Box>
+          </Grid>
+
+        </Grid>
+      </Container>
+
+      {/* Bottom Bar */}
+      <Box sx={{ bgcolor: "#001a4d", py: 3, borderTop: "1px solid rgba(255,183,197,0.1)" }}>
+        <Container maxWidth="lg">
+          <Typography variant="body2" sx={{ textAlign: "center", opacity: 0.6, fontSize: "0.85rem" }}>
+            © {currentYear} <strong>TripToJapan.in</strong>. All Rights Reserved. Powered by <strong>HTC Group of Companies</strong>.
+          </Typography>
+        </Container>
+      </Box>
+    </Box>
   );
 };
 

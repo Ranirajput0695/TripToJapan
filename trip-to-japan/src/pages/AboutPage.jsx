@@ -5,32 +5,42 @@ import {
   Box, 
   Grid, 
   Paper, 
-  Card, 
-  CardContent, 
-  Avatar, 
-  Divider 
+  Stack,
+  Divider,
+  useTheme,
+  useMediaQuery
 } from "@mui/material";
 import { 
-  Public as PublicIcon, 
-  Group as GroupIcon, 
-  Star as StarIcon, 
-  Favorite as HeartIcon,
-  EmojiEvents as AwardIcon,
-  Handshake as PartnerIcon
+  CheckCircle as CheckIcon, 
+  Business as BusinessIcon, 
+  Event as EventIcon, 
+  LocationOn as LocationIcon,
+  Flag as MissionIcon,
+  Visibility as VisionIcon
 } from "@mui/icons-material";
+import aboutHero from "../assets/about-hero-new.png";
 
-// Images removed
+const strengths = [
+  "Japan-Based Operations",
+  "Professional Transport Network",
+  "Flexible Travel Solutions",
+  "FIT & Group Handling",
+  "Multi-city Tour Planning",
+  "Reliable Customer Support"
+];
 
 const AboutPage = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
-    <Box sx={{ bgcolor: "#fff", color: "#1a1a1a", pb: 10, pt: { xs: "110px", md: "140px" } }}>
+    <Box sx={{ bgcolor: "#fff", color: "#1a1a1a" }}>
       
-      {/* 🚀 HERO SECTION */}
+      {/* 🚀 1. HEADER SECTION */}
       <Box 
         sx={{ 
-          height: { xs: "50vh", md: "60vh" },
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6))`,
-          bgcolor: "#002366",
+          height: { xs: "40vh", md: "50vh" },
+          backgroundImage: `linear-gradient(rgba(0,35,102,0.5), rgba(0,35,102,0.7)), url(${aboutHero})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           display: "flex",
@@ -40,130 +50,182 @@ const AboutPage = () => {
           color: "#fff",
           textAlign: "center",
           px: 2,
-          mb: 10
+          pt: { xs: "100px", md: "80px" }
         }}
       >
-        <Typography variant="overline" sx={{ letterSpacing: 4, color: "#FFB7C5", fontWeight: "800", mb: 2 }}>
-          OUR STORY
+        <Typography 
+          variant="h1" 
+          sx={{ 
+            fontWeight: "900", 
+            fontSize: { xs: "2.5rem", md: "4rem" }, 
+            mb: 2,
+            textShadow: "0 4px 15px rgba(0,0,0,0.3)"
+          }}
+        >
+          About <span style={{ color: "#FFB7C5" }}>TripToJapan.in</span>
         </Typography>
-        <Typography variant="h1" sx={{ fontWeight: "900", fontSize: { xs: "2.5rem", md: "4.5rem" }, mb: 2 }}>
-          Experience <span style={{ color: "#FFB7C5" }}>Authentic</span> Japan
-        </Typography>
-        <Typography variant="h6" sx={{ maxWidth: "800px", opacity: 0.9, fontWeight: "500" }}>
-          We are more than just a travel agency. We are your local partners in discovering the soul of Japan.
-        </Typography>
+        <Box sx={{ width: "100px", height: "4px", bgcolor: "#FFB7C5", borderRadius: "10px" }} />
       </Box>
 
-      <Container maxWidth="lg">
-        {/* 🏛 COMPANY OVERVIEW */}
-        <Grid container spacing={8} alignItems="center" sx={{ mb: 15 }}>
+      <Container maxWidth="lg" sx={{ py: { xs: 8, md: 12 } }}>
+        
+        {/* 🏛 2. INTRODUCTION */}
+        <Box sx={{ mb: 12, textAlign: "center", maxWidth: "900px", mx: "auto" }}>
+          <Typography 
+            variant="h4" 
+            sx={{ 
+              color: "#002366", 
+              fontWeight: 800, 
+              mb: 4,
+              fontSize: { xs: "1.8rem", md: "2.5rem" }
+            }}
+          >
+            Your Local Partner in Japan
+          </Typography>
+          <Typography 
+            variant="body1" 
+            sx={{ 
+              fontSize: "1.2rem", 
+              lineHeight: 1.8, 
+              color: "rgba(0,0,0,0.7)",
+              fontWeight: 500
+            }}
+          >
+            **TripToJapan.in** is a dedicated Japan travel service platform operated under 
+            <strong> HTC Group of Companies</strong>, established in 2016 in Japan. 
+            We provide complete ground travel services across Japan including airport transfers, 
+            sightseeing tours, activity bookings, FIT tours, and group travel arrangements.
+          </Typography>
+        </Box>
+
+        {/* 🎯 3. MISSION & VISION */}
+        <Grid container spacing={4} sx={{ mb: 12 }}>
           <Grid item xs={12} md={6}>
-            <Typography variant="h3" fontWeight="900" gutterBottom>
-              Who <span style={{ color: "#FFB7C5" }}>We Are</span>
-            </Typography>
-            <Typography variant="body1" sx={{ color: "text.secondary", fontSize: "1.1rem", lineHeight: 1.8, mb: 4 }}>
-              **TripToJapan.in** is a specialized Japan-based travel service platform powered by **HTC Group of Companies**. 
-              Operating directly from our headquarters in **Tochigi-Ken, Japan**, we eliminate middlemen to provide 
-              authentic, reliable, and premium ground travel arrangements.
-            </Typography>
-            <Typography variant="body1" sx={{ color: "text.secondary", fontSize: "1.1rem", lineHeight: 1.8 }}>
-              With over a decade of experience in Japanese tourism and logistics, our team is dedicated to 
-              ensuring that every traveler—whether an independent explorer (FIT) or part of a large group—experiences 
-              the true essence of Japan with professional local support.
-            </Typography>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Box 
+            <Paper 
+              elevation={0} 
               sx={{ 
-                height: "400px", 
-                bgcolor: "#002366", 
-                borderRadius: 8, 
-                position: "relative",
+                p: 5, 
+                height: "100%", 
+                bgcolor: "#f8fafc", 
+                borderRadius: "30px",
+                border: "1px solid rgba(0,35,102,0.05)",
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "#fff",
-                boxShadow: "0 20px 40px rgba(0,35,102,0.2)"
+                gap: 2
               }}
             >
-              <Typography variant="h4" fontWeight="900" color="#FFB7C5">HTC GROUP</Typography>
-              <Typography variant="overline" sx={{ letterSpacing: 4 }}>Japan HQ</Typography>
-              <Box sx={{ mt: 4, textAlign: "center" }}>
-                <Typography variant="body2" sx={{ opacity: 0.8 }}>323-0822 Tochigi-Ken, Oyama-shi</Typography>
-                <Typography variant="body2" sx={{ opacity: 0.8 }}>Eki-Minami Cho, 4-13-17</Typography>
+              <Box sx={{ color: "#FFB7C5", display: "flex", alignItems: "center", gap: 2 }}>
+                <MissionIcon fontSize="large" />
+                <Typography variant="h5" fontWeight="900" color="#002366">Our Mission</Typography>
               </Box>
-            </Box>
+              <Typography variant="body1" sx={{ color: "rgba(0,0,0,0.6)", lineHeight: 1.7, fontSize: "1.1rem" }}>
+                To provide dependable, high-quality travel services across Japan with professional 
+                support and efficient planning.
+              </Typography>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Paper 
+              elevation={0} 
+              sx={{ 
+                p: 5, 
+                height: "100%", 
+                bgcolor: "#002366", 
+                color: "#fff",
+                borderRadius: "30px",
+                display: "flex",
+                flexDirection: "column",
+                gap: 2
+              }}
+            >
+              <Box sx={{ color: "#FFB7C5", display: "flex", alignItems: "center", gap: 2 }}>
+                <VisionIcon fontSize="large" />
+                <Typography variant="h5" fontWeight="900" color="#fff">Our Vision</Typography>
+              </Box>
+              <Typography variant="body1" sx={{ color: "rgba(255,255,255,0.8)", lineHeight: 1.7, fontSize: "1.1rem" }}>
+                To become a trusted and recognized Japan travel service provider for travel companies 
+                and individual travelers worldwide.
+              </Typography>
+            </Paper>
           </Grid>
         </Grid>
 
-        {/* 🏆 OUR VALUES */}
-        <Box sx={{ mb: 15 }}>
-          <Typography variant="h3" textAlign="center" fontWeight="900" sx={{ mb: 8 }}>
-            Our Core <span style={{ color: "#FFB7C5" }}>Values</span>
+        {/* 💪 4. CORE STRENGTHS */}
+        <Box sx={{ mb: 12 }}>
+          <Typography variant="h3" sx={{ textAlign: "center", fontWeight: 900, mb: 8, color: "#002366" }}>
+            Our Core <span style={{ color: "#FFB7C5" }}>Strengths</span>
           </Typography>
-          <Grid container spacing={4}>
-            {[
-              { icon: <HeartIcon />, title: "Customer First", desc: "Your safety and satisfaction are our top priorities in every arrangement." },
-              { icon: <AwardIcon />, title: "Quality Service", desc: "We maintain high standards for transportation and local coordination." },
-              { icon: <PartnerIcon />, title: "Local Expertise", desc: "Direct operation from Japan gives us unmatched local knowledge." }
-            ].map((v, i) => (
-              <Grid item xs={12} md={4} key={i}>
-                <Card elevation={0} sx={{ textAlign: "center", p: 4, bgcolor: "#fff1f3", borderRadius: 6 }}>
-                  <Box sx={{ color: "#FFB7C5", mb: 2 }}>{v.icon}</Box>
-                  <Typography variant="h5" fontWeight="800" gutterBottom>{v.title}</Typography>
-                  <Typography variant="body2" color="text.secondary">{v.desc}</Typography>
-                </Card>
+          <Grid container spacing={3}>
+            {strengths.map((item, index) => (
+              <Grid item xs={12} sm={6} md={4} key={index}>
+                <Box 
+                  sx={{ 
+                    p: 3, 
+                    bgcolor: "#fff", 
+                    borderRadius: "15px", 
+                    boxShadow: "0 5px 15px rgba(0,0,0,0.02)",
+                    border: "1px solid #f0f0f0",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 2,
+                    transition: "all 0.3s ease",
+                    "&:hover": { transform: "translateY(-5px)", borderColor: "#FFB7C5" }
+                  }}
+                >
+                  <CheckIcon sx={{ color: "#FFB7C5" }} />
+                  <Typography fontWeight="700" color="#002366">{item}</Typography>
+                </Box>
               </Grid>
             ))}
           </Grid>
         </Box>
 
-        {/* 👥 THE TEAM */}
-        <Grid container spacing={8} alignItems="center">
-          <Grid item xs={12} md={6}>
-             <Box 
-              sx={{ 
-                height: "400px", 
-                bgcolor: "#FFB7C5", 
-                borderRadius: 8, 
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "#002366"
-              }}
-            >
-              <GroupIcon sx={{ fontSize: 80, mb: 2 }} />
-              <Typography variant="h4" fontWeight="900">OUR TEAM</Typography>
-              <Typography variant="body1" fontWeight="600">Japan & India Experts</Typography>
-            </Box>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Typography variant="h3" fontWeight="900" gutterBottom>
-              Local <span style={{ color: "#FFB7C5" }}>Ground Support</span>
-            </Typography>
-            <Typography variant="body1" sx={{ color: "text.secondary", fontSize: "1.1rem", lineHeight: 1.8, mb: 4 }}>
-              Our team consists of Japanese locals and Indian travel experts who understand the unique 
-              preferences of global travelers. We bridge the cultural gap to provide a seamless, 
-              stress-free vacation.
-            </Typography>
-            <Divider sx={{ mb: 4, borderColor: "#FFB7C5", width: "100px", borderWidth: 2 }} />
-            <Grid container spacing={3}>
-              {[
-                { label: "24/7 Support", icon: <StarIcon /> },
-                { label: "Multilingual Staff", icon: <PublicIcon /> }
-              ].map((item, i) => (
-                <Grid item xs={6} key={i}>
-                  <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                    <Box sx={{ color: "#FFB7C5" }}>{item.icon}</Box>
-                    <Typography variant="subtitle1" fontWeight="800">{item.label}</Typography>
+        {/* 🏢 5. COMPANY DETAILS */}
+        <Box 
+          sx={{ 
+            bgcolor: "#f8fafc", 
+            p: { xs: 4, md: 8 }, 
+            borderRadius: "40px", 
+            border: "1px solid rgba(0,35,102,0.05)" 
+          }}
+        >
+          <Typography variant="h4" sx={{ fontWeight: 900, mb: 6, color: "#002366", textAlign: "center" }}>
+            Official Company <span style={{ color: "#FFB7C5" }}>Details</span>
+          </Typography>
+          <Grid container spacing={4}>
+            {[
+              { icon: <BusinessIcon />, label: "Company Name", value: "HTC Group of Companies" },
+              { icon: <EventIcon />, label: "Established", value: "2016" },
+              { icon: <LocationIcon />, label: "Office Address", value: "323-0822 Tochigi-Ken, Oyama-shi Eki-Minami Cho, 4-13-17, Japan." }
+            ].map((detail, i) => (
+              <Grid item xs={12} md={i === 2 ? 12 : 6} key={i}>
+                <Stack direction="row" spacing={3} alignItems="center">
+                  <Box 
+                    sx={{ 
+                      p: 2, 
+                      bgcolor: "#fff", 
+                      borderRadius: "15px", 
+                      color: "#FFB7C5",
+                      boxShadow: "0 4px 10px rgba(0,0,0,0.05)"
+                    }}
+                  >
+                    {detail.icon}
                   </Box>
-                </Grid>
-              ))}
-            </Grid>
+                  <Box>
+                    <Typography variant="overline" sx={{ color: "rgba(0,0,0,0.5)", fontWeight: 800 }}>
+                      {detail.label}
+                    </Typography>
+                    <Typography variant="h6" sx={{ color: "#002366", fontWeight: 700 }}>
+                      {detail.value}
+                    </Typography>
+                  </Box>
+                </Stack>
+                {i < 2 && <Divider sx={{ my: 3, display: { md: "none" } }} />}
+              </Grid>
+            ))}
           </Grid>
-        </Grid>
+        </Box>
+
       </Container>
     </Box>
   );

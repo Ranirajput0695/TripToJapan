@@ -132,12 +132,15 @@ import ScrollToTop from "./components/ScrollToTop";
 import PromotionPopup from "./components/PromotionPopup";
 import Home from "./pages/Home";
 import About from "./pages/AboutPage";
-import Itineraries from "./pages/ServicesPage";
+import JapanItineraries from "./pages/JapanItineraries";
 import ItineraryDetail from "./pages/ItineraryDetailPage";
 import Services from "./pages/AllServicesPage";
 import Transport from "./pages/TransportPage";
 import Contact from "./pages/ContactPage";
 import Destination from "./pages/DestinationPage";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsConditions from "./pages/TermsConditions";
+import CancellationPolicy from "./pages/CancellationPolicy";
 
 function App() {
   return (
@@ -148,12 +151,15 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/packages" element={<Itineraries />} />
+        <Route path="/packages" element={<JapanItineraries />} />
         <Route path="/destinations" element={<Destination />} />
         <Route path="/itinerary-details" element={<ItineraryDetail />} />
         <Route path="/services" element={<Services />} />
         <Route path="/transport" element={<Transport />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/terms-and-conditions" element={<TermsConditions />} />
+        <Route path="/cancellation-policy" element={<CancellationPolicy />} />
       </Routes>
 
       <Footer />
