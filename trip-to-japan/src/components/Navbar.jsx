@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import logo from "../assets/logo.png";
 import QuickInquiryModal from "./QuickInquiryModal";
 import { Link, useLocation } from "react-router-dom";
-import { 
-  IconButton, 
+import {
+  IconButton,
   Box,
   useMediaQuery,
   useTheme,
@@ -12,12 +12,13 @@ import {
   Typography,
   Container
 } from "@mui/material";
-import { 
-  Menu as MenuIcon, 
-  Close as CloseIcon, 
-  Phone as PhoneIcon, 
+import {
+  Menu as MenuIcon,
+  Close as CloseIcon,
+  Phone as PhoneIcon,
   SupportAgent as SupportIcon,
-  Verified as VerifiedIcon
+  Verified as VerifiedIcon,
+  Person as UserIcon
 } from "@mui/icons-material";
 
 const Navbar = () => {
@@ -50,59 +51,27 @@ const Navbar = () => {
   ];
 
   return (
-    <header style={{ 
-      position: "fixed", 
-      top: 0, 
-      width: "100%", 
+    <header style={{
+      position: "fixed",
+      top: 0,
+      width: "100%",
       zIndex: 1000,
       transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
     }}>
-      
-      {/* 🔝 TOP BAR - Premium Glass Blue */}
-      <Box sx={{ 
-        background: "rgba(0, 35, 102, 0.95)", 
-        color: "#FFB7C5", 
-        height: scrolled ? "0px" : "40px",
-        overflow: "hidden",
-        display: "flex",
-        alignItems: "center",
-        transition: "all 0.3s ease",
-        backdropFilter: "blur(5px)",
-        borderBottom: "1px solid rgba(255, 183, 197, 0.1)"
-      }}>
-        <Container maxWidth="xl" sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-            <VerifiedIcon sx={{ fontSize: 14 }} />
-            <Typography sx={{ fontSize: isMobile ? "10px" : "11px", fontWeight: "700", letterSpacing: "1px" }}>
-              JAPAN'S #1 TRUSTED TOUR OPERATOR
-            </Typography>
-          </Box>
-          {!isMobile && (
-            <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
-              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                <SupportIcon sx={{ fontSize: 14 }} />
-                <Typography sx={{ fontSize: "11px", fontWeight: "600" }}>
-                  24/7 SUPPORT: +91 9560439303
-                </Typography>
-              </Box>
-            </Box>
-          )}
-        </Container>
-      </Box>
 
-      {/* 🔻 MAIN NAVBAR - Elegant Glassmorphism */}
-      <Box sx={{ 
-        background: scrolled ? "rgba(255, 255, 255, 0.85)" : "rgba(255, 183, 197, 0.9)", 
-        backdropFilter: "blur(20px)",
-        height: isMobile ? "70px" : scrolled ? "80px" : "95px",
+      {/* 🔻 MAIN NAVBAR - Transparent Overlay */}
+      <Box sx={{
+        background: scrolled ? "rgba(255, 255, 255, 0.95)" : "transparent",
+        backdropFilter: scrolled ? "blur(10px)" : "none",
+        height: isMobile ? "70px" : scrolled ? "85px" : "100px",
         display: "flex",
         alignItems: "center",
-        boxShadow: scrolled ? "0 10px 30px rgba(0,0,0,0.08)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(0,35,102,0.05)" : "none",
-        transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+        boxShadow: scrolled ? "0 4px 20px rgba(0,0,0,0.05)" : "none",
+        transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+        borderBottom: scrolled ? "1px solid rgba(0,0,0,0.05)" : "none"
       }}>
-        <Container maxWidth="xl" sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          
+        <Container maxWidth="xl" sx={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+
           {/* Logo & Brand */}
           <Link to="/" style={{ display: "flex", alignItems: "center", gap: isMobile ? "10px" : "15px", textDecoration: "none" }}>
             <Box sx={{ position: "relative" }}>
@@ -111,29 +80,30 @@ const Navbar = () => {
                 alt="logo"
                 style={{
                   height: isMobile ? "50px" : scrolled ? "60px" : "70px",
-                  width: isMobile ? "50px" : scrolled ? "60px" : "70px",        
+                  width: isMobile ? "50px" : scrolled ? "60px" : "70px",
                   borderRadius: "50%",
                   objectFit: "cover",
-                  border: scrolled ? "2px solid #002366" : "2px solid #fff",
+                  border: scrolled ? "2px solid #002366" : "2px solid rgba(255,255,255,0.8)",
                   transition: "all 0.4s ease",
                   boxShadow: "0 4px 15px rgba(0,0,0,0.1)"
                 }}
               />
             </Box>
             <Box>
-              <Typography sx={{ 
-                color: "#002366", 
-                fontWeight: "900", 
-                fontSize: isMobile ? "18px" : scrolled ? "22px" : "26px", 
+              <Typography sx={{
+                color: scrolled ? "#002366" : "#ffffff",
+                fontWeight: "900",
+                fontSize: isMobile ? "18px" : scrolled ? "22px" : "26px",
                 lineHeight: 1,
                 letterSpacing: "-0.5px",
                 textTransform: "uppercase",
-                transition: "all 0.4s ease"
+                transition: "all 0.4s ease",
+                textShadow: !scrolled ? "0 2px 4px rgba(0,0,0,0.3)" : "none"
               }}>
-                Trip to <span style={{ color: scrolled ? "#E08E9D" : "#fff" }}>Japan</span>
+                TRIP TO <span style={{ color: "#E91E63" }}>JAPAN</span>
               </Typography>
               {!isMobile && !scrolled && (
-                <Typography sx={{ fontSize: "10px", fontWeight: "700", color: "#002366", opacity: 0.7, mt: 0.5, letterSpacing: 1 }}>
+                <Typography sx={{ fontSize: "10px", fontWeight: "700", color: "#ffffff", opacity: 0.9, mt: 0.5, letterSpacing: 1 }}>
                   PREMIUM TRAVEL EXPERIENCES
                 </Typography>
               )}
@@ -142,54 +112,66 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           {!isMobile && (
-            <Box component="nav" sx={{ display: "flex", alignItems: "center", gap: "4px" }}>
+            <Box component="nav" sx={{ display: "flex", alignItems: "center", gap: "25px" }}>
               {navLinks.map((link) => {
                 const isActive = location.pathname === link.path;
                 return (
-                  <Link 
-                    key={link.title} 
-                    to={link.path} 
+                  <Link
+                    key={link.title}
+                    to={link.path}
                     style={{
                       ...linkStyle,
-                      color: isActive ? "#002366" : "rgba(0,35,102,0.8)",
+                      color: isActive ? (scrolled ? "#002366" : "#E91E63") : (scrolled ? "rgba(0,35,102,0.8)" : "#ffffff"),
                       position: "relative",
-                      padding: "10px 16px",
-                      borderRadius: "12px",
-                      transition: "all 0.3s ease",
                     }}
                   >
-                    <Typography sx={{ fontWeight: isActive ? "800" : "600", fontSize: "14px" }}>
-                      {link.title}
-                    </Typography>
-                    {isActive && (
-                      <Box sx={{ 
-                        position: "absolute", 
-                        bottom: "6px", 
-                        left: "16px", 
-                        right: "16px", 
-                        height: "3px", 
-                        bgcolor: "#002366", 
-                        borderRadius: "10px" 
-                      }} />
-                    )}
+                    <Box sx={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center" }}>
+                      {isActive && (
+                        <Box sx={{
+                          width: "6px",
+                          height: "6px",
+                          bgcolor: scrolled ? "#444" : "#ffffff",
+                          transform: "rotate(45deg)",
+                          position: "absolute",
+                          top: "-12px"
+                        }} />
+                      )}
+                      <Typography sx={{
+                        fontWeight: isActive ? "700" : "600",
+                        fontSize: "15px",
+                        textShadow: !scrolled ? "0 1px 2px rgba(0,0,0,0.3)" : "none"
+                      }}>
+                        {link.title}
+                      </Typography>
+                      {isActive && (
+                        <Box sx={{
+                          position: "absolute",
+                          bottom: "-6px",
+                          width: "24px",
+                          height: "2px",
+                          bgcolor: "#E91E63",
+                          borderRadius: "2px"
+                        }} />
+                      )}
+                    </Box>
                   </Link>
                 );
               })}
-              
-              <Box sx={{ ml: 2 }}>
-                <button 
+
+              <Box sx={{ ml: 2, display: "flex", alignItems: "center", gap: 2.5 }}>
+                <button
                   style={{
                     ...ctaButtonStyle,
-                    background: "#002366",
+                    background: "linear-gradient(135deg, #FF1493 0%, #E91E63 100%)",
                     color: "#fff",
                     borderRadius: "50px",
-                    padding: scrolled ? "10px 22px" : "14px 28px",
-                    fontSize: "13px",
-                    boxShadow: "0 10px 20px rgba(0,35,102,0.2)"
-                  }} 
+                    padding: scrolled ? "10px 24px" : "12px 28px",
+                    fontSize: "14px",
+                    boxShadow: "0 6px 20px rgba(233, 30, 99, 0.3)",
+                    fontFamily: "'Inter', sans-serif"
+                  }}
                   onClick={() => setIsModalOpen(true)}
                 >
-                  <PhoneIcon sx={{ fontSize: 16, mr: 1 }} />
                   ENQUIRE NOW
                 </button>
               </Box>
@@ -198,11 +180,11 @@ const Navbar = () => {
 
           {/* Mobile Menu Icon */}
           {isMobile && (
-            <IconButton 
-              onClick={() => setIsMenuOpen(!isMenuOpen)} 
-              sx={{ 
-                color: "#002366",
-                bgcolor: "rgba(0,35,102,0.05)",
+            <IconButton
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              sx={{
+                color: scrolled ? "#002366" : "#ffffff",
+                bgcolor: scrolled ? "rgba(0,35,102,0.05)" : "rgba(255,255,255,0.2)",
                 "&:hover": { bgcolor: "rgba(0,35,102,0.1)" }
               }}
             >
@@ -215,8 +197,8 @@ const Navbar = () => {
 
       {/* 📱 MOBILE MENU */}
       <Collapse in={isMenuOpen}>
-        <Paper elevation={10} sx={{ 
-          bgcolor: "rgba(255, 255, 255, 0.95)", 
+        <Paper elevation={10} sx={{
+          bgcolor: "rgba(255, 255, 255, 0.95)",
           backdropFilter: "blur(20px)",
           borderRadius: "0 0 30px 30px",
           borderTop: "1px solid rgba(0,35,102,0.05)"
@@ -225,9 +207,9 @@ const Navbar = () => {
             {navLinks.map((link) => {
               const isActive = location.pathname === link.path;
               return (
-                <Link 
-                  key={link.title} 
-                  to={link.path} 
+                <Link
+                  key={link.title}
+                  to={link.path}
                   style={{
                     display: "flex",
                     alignItems: "center",
@@ -247,19 +229,19 @@ const Navbar = () => {
               );
             })}
             <Box sx={{ pt: 3 }}>
-              <button 
-                style={{ 
-                  ...ctaButtonStyle, 
-                  width: "100%", 
-                  marginLeft: 0, 
-                  padding: "18px", 
+              <button
+                style={{
+                  ...ctaButtonStyle,
+                  width: "100%",
+                  marginLeft: 0,
+                  padding: "18px",
                   borderRadius: "15px",
                   justifyContent: "center",
-                  background: "#002366"
+                  background: "#E91E63"
                 }}
                 onClick={() => { setIsModalOpen(true); setIsMenuOpen(false); }}
               >
-                BOOK A CALL
+                ENQUIRE NOW
               </button>
             </Box>
           </Box>

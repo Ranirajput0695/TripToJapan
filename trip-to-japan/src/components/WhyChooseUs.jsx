@@ -1,172 +1,140 @@
 import React from "react";
 import { Box, Container, Typography, Grid, Button, Stack } from "@mui/material";
-import { CheckCircle as CheckIcon, ArrowForward as ArrowIcon } from "@mui/icons-material";
-import whyUsImg from "../assets/why-us.png";
+import { 
+  CheckCircle as CheckIcon, 
+  ArrowForward as ArrowIcon,
+} from "@mui/icons-material";
 
 const benefits = [
   "Japan-Based Local Company",
   "Experienced Ground Handling Team",
   "Reliable Transportation Services",
-  "Competitive Pricing",
-  "Support for Travel Agents",
-  "Custom Tour Planning",
-  "English Support Available"
+  "Competitive & Transparent Pricing",
+  "Professional Support for Travel Agents",
+  "Bespoke Custom Tour Planning",
+  "24/7 English Language Support"
 ];
 
 const WhyChooseUs = () => {
   return (
-    <Box sx={{ py: { xs: 10, md: 15 }, bgcolor: "#fff", position: "relative", overflow: "hidden" }}>
-      {/* Decorative Background Element */}
-      <Box 
-        sx={{ 
-          position: "absolute", 
-          top: "-10%", 
-          right: "-5%", 
-          width: "400px", 
-          height: "400px", 
-          background: "radial-gradient(circle, rgba(255, 183, 197, 0.1) 0%, transparent 70%)",
-          borderRadius: "50%",
-          zIndex: 0
-        }} 
-      />
+    <Box sx={{ pt: 4, pb: 10, bgcolor: "#fff", position: "relative" }}>
+      <Container maxWidth="lg">
+        {/* Header Section */}
+        <Box sx={{ textAlign: "center", mb: 8 }}>
+          <Typography 
+            variant="overline" 
+            sx={{ color: "#E91E63", fontWeight: 800, letterSpacing: 4, display: "block", mb: 1 }}
+          >
+            THE TRIPTOJAPAN ADVANTAGE
+          </Typography>
+          <Typography 
+            variant="h2" 
+            sx={{ 
+              fontWeight: 900, 
+              color: "#002366", 
+              fontSize: { xs: "2rem", md: "3.2rem" },
+              lineHeight: 1.2
+            }}
+          >
+            Why Choose <span style={{ color: "#E91E63" }}>TripToJapan.in</span>?
+          </Typography>
+          <Box sx={{ width: "60px", height: "4px", bgcolor: "#E91E63", margin: "20px auto", borderRadius: "10px" }} />
+        </Box>
 
-      <Container maxWidth="lg" sx={{ position: "relative", zIndex: 1 }}>
-        <Grid container spacing={8} alignItems="center">
-          {/* Left Side: Image */}
-          <Grid item xs={12} md={6}>
-            <Box 
-              sx={{ 
-                position: "relative",
-                "&::before": {
-                  content: '""',
-                  position: "absolute",
-                  top: "-20px",
-                  left: "-20px",
-                  width: "100%",
-                  height: "100%",
-                  border: "2px solid #FFB7C5",
-                  borderRadius: "30px",
-                  zIndex: -1
+        {/* Benefits Cluster - Centered & No Overlap */}
+        <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 2, mb: 8 }}>
+          {benefits.map((benefit, index) => (
+            <Box
+              key={index}
+              sx={{
+                px: 3,
+                py: 1.8,
+                borderRadius: "50px",
+                bgcolor: "#fff",
+                border: "1px solid rgba(0, 35, 102, 0.08)",
+                display: "flex",
+                alignItems: "center",
+                gap: 1.5,
+                transition: "all 0.3s ease",
+                boxShadow: "0 4px 15px rgba(0,0,0,0.02)",
+                "&:hover": {
+                  transform: "translateY(-3px)",
+                  borderColor: "#E91E63",
+                  boxShadow: "0 10px 25px rgba(233,30,99,0.1)",
                 }
               }}
             >
-              <img 
-                src={whyUsImg} 
-                alt="Why Choose Us" 
-                style={{ 
-                  width: "100%", 
-                  borderRadius: "30px", 
-                  boxShadow: "0 20px 40px rgba(0,0,0,0.1)" 
-                }} 
-              />
-              <Box 
-                sx={{ 
-                  position: "absolute", 
-                  bottom: "30px", 
-                  right: "-20px", 
-                  bgcolor: "#002366", 
-                  color: "#fff", 
-                  p: 3, 
-                  borderRadius: "20px",
-                  boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
-                  display: { xs: "none", sm: "block" }
-                }}
-              >
-                <Typography variant="h4" fontWeight="900" color="#FFB7C5">10+</Typography>
-                <Typography variant="body2" sx={{ opacity: 0.8 }}>Years of Excellence</Typography>
-              </Box>
-            </Box>
-          </Grid>
-
-          {/* Right Side: Content */}
-          <Grid item xs={12} md={6}>
-            <Typography 
-              variant="overline" 
-              sx={{ 
-                color: "#FFB7C5", 
-                fontWeight: 800, 
-                letterSpacing: 3,
-                display: "block",
-                mb: 2
-              }}
-            >
-              THE TRIPTOJAPAN ADVANTAGE
-            </Typography>
-            <Typography 
-              variant="h2" 
-              sx={{ 
-                fontWeight: 900, 
-                color: "#002366",
-                fontSize: { xs: "2.5rem", md: "3.2rem" },
-                mb: 4,
-                lineHeight: 1.2
-              }}
-            >
-              Why Choose <span style={{ color: "#FFB7C5" }}>TripToJapan.in</span>
-            </Typography>
-
-            <Stack spacing={2.5} sx={{ mb: 6 }}>
-              {benefits.map((benefit, index) => (
-                <Box key={index} sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                  <CheckIcon sx={{ color: "#FFB7C5", fontSize: "1.5rem" }} />
-                  <Typography 
-                    variant="body1" 
-                    sx={{ 
-                      fontSize: "1.1rem", 
-                      fontWeight: 600, 
-                      color: "rgba(0,35,102,0.8)" 
-                    }}
-                  >
-                    {benefit}
-                  </Typography>
-                </Box>
-              ))}
-            </Stack>
-
-            <Box 
-              sx={{ 
-                p: 4, 
-                bgcolor: "#f8fafc", 
-                borderRadius: "24px", 
-                borderLeft: "6px solid #FFB7C5",
-                mb: 5
-              }}
-            >
-              <Typography 
-                variant="body1" 
-                sx={{ 
-                  fontStyle: "italic", 
-                  color: "rgba(0,35,102,0.7)", 
-                  lineHeight: 1.8,
-                  fontSize: "1.05rem"
-                }}
-              >
-                "Whether you need airport transfers, sightseeing tours, or complete tour arrangements, 
-                our experienced team is ready to assist you with professional and timely services."
+              <CheckIcon sx={{ color: "#E91E63", fontSize: 20 }} />
+              <Typography sx={{ fontWeight: 700, color: "#002366", fontSize: "0.95rem", whiteSpace: "nowrap" }}>
+                {benefit}
               </Typography>
             </Box>
+          ))}
+        </Box>
 
-            <Button
-              variant="contained"
-              size="large"
-              endIcon={<ArrowIcon />}
-              href="/contact"
-              sx={{
-                bgcolor: "#002366",
-                color: "#fff",
-                px: 6,
-                py: 2,
-                fontWeight: 800,
-                fontSize: "1rem",
-                borderRadius: "12px",
-                "&:hover": { bgcolor: "#001a4d", transform: "scale(1.05)" },
-                transition: "all 0.3s ease"
-              }}
-            >
-              INQUIRY NOW
-            </Button>
-          </Grid>
-        </Grid>
+        {/* Premium Testimonial Card */}
+        <Box 
+          sx={{ 
+            p: { xs: 4, md: 6 }, 
+            bgcolor: "#002366", 
+            borderRadius: "40px", 
+            textAlign: "center",
+            color: "#fff",
+            position: "relative",
+            overflow: "hidden",
+            boxShadow: "0 30px 60px rgba(0,35,102,0.2)"
+          }}
+        >
+          {/* Subtle decoration */}
+          <Box 
+            sx={{ 
+              position: "absolute", 
+              top: -20, 
+              right: -20, 
+              width: "150px", 
+              height: "150px", 
+              borderRadius: "50%", 
+              background: "radial-gradient(circle, rgba(233, 30, 99, 0.1) 0%, transparent 70%)" 
+            }} 
+          />
+          
+          <Typography 
+            variant="h5" 
+            sx={{ 
+              fontStyle: "italic", 
+              mb: 5, 
+              lineHeight: 1.6, 
+              fontWeight: 500,
+              fontSize: { xs: "1.1rem", md: "1.4rem" },
+              maxWidth: "800px",
+              margin: "0 auto 40px"
+            }}
+          >
+            "Whether you need airport transfers, sightseeing tours, or complete tour arrangements, 
+            our experienced team is ready to assist you with professional and timely services."
+          </Typography>
+          
+          <Button
+            variant="contained"
+            size="large"
+            endIcon={<ArrowIcon />}
+            href="/contact"
+            sx={{
+              bgcolor: "#E91E63",
+              color: "#fff",
+              px: 6,
+              py: 2,
+              fontWeight: 800,
+              fontSize: "1rem",
+              borderRadius: "15px",
+              textTransform: "none",
+              "&:hover": { bgcolor: "#fff", color: "#002366", transform: "scale(1.05)" },
+              transition: "all 0.3s ease"
+            }}
+          >
+            Get Expert Assistance Now
+          </Button>
+        </Box>
       </Container>
     </Box>
   );
