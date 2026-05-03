@@ -9,8 +9,8 @@ const firebaseConfig = {
   projectId: "triptojapan-9467c",
   storageBucket: "triptojapan-9467c.firebasestorage.app",
   messagingSenderId: "634677678865",
-  appId: "1:634677678865:web:0b3ac5a7d5389ab3d9b2b0",
-  measurementId: "G-CV6RD9WD57"
+  appId: "1:634677678865:web:04c23108f5995293d9b2b0",
+  measurementId: "G-V8D5TGHGBH"
 };
 
 const app = initializeApp(firebaseConfig);
