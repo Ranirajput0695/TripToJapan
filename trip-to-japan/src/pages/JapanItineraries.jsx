@@ -123,22 +123,25 @@ const JapanItineraries = () => {
               </Box>
             </Stack>
 
-            <Grid container spacing={3}>
+            <Grid container spacing={4}>
               {itinerary.steps.map((step, index) => (
-                <Grid item xs={12} sm={6} md={4} key={index}>
+                <Grid item xs={12} sm={6} md={3} key={index} sx={{ display: 'flex' }}>
                   <Paper 
                     elevation={0}
                     sx={{ 
                       p: 3, 
-                      height: "100%", 
+                      width: "100%",
+                      display: "flex",
+                      flexDirection: "column",
                       borderRadius: "20px", 
                       bgcolor: "#f8fafc",
                       border: "1px solid rgba(0,35,102,0.05)",
                       transition: "all 0.3s ease",
                       "&:hover": {
-                        transform: "translateY(-5px)",
-                        boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
-                        borderColor: "#FFB7C5"
+                        transform: "translateY(-10px)",
+                        boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+                        borderColor: "#FFB7C5",
+                        bgcolor: "#fff"
                       }
                     }}
                   >
@@ -148,7 +151,7 @@ const JapanItineraries = () => {
                     <Typography variant="h6" sx={{ fontWeight: 800, color: "#002366", mb: 1, fontSize: "1.1rem" }}>
                       {step.title}
                     </Typography>
-                    <Typography variant="body2" sx={{ color: "rgba(0,0,0,0.6)", lineHeight: 1.6 }}>
+                    <Typography variant="body2" sx={{ color: "rgba(0,0,0,0.6)", lineHeight: 1.6, flexGrow: 1 }}>
                       {step.desc}
                     </Typography>
                   </Paper>
