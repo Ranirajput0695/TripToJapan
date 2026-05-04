@@ -80,62 +80,76 @@ const TransportPage = () => {
         </Typography>
       </Box>
 
-      <Container maxWidth="lg" sx={{ pt: 10, pb: 10 }}>
-        {/* 🚗 VEHICLE GRID WITH ANTIGRAVITY */}
-        <Grid container spacing={4} justifyContent="center">
-          {vehicles.map((v, i) => (
-            <Grid item xs={12} sm={6} md={3} key={i}>
-              <Card sx={{
-                borderRadius: 6,
-                height: "100%",
-                animation: `${float} ${3 + i}s ease-in-out infinite`, // Staggered floating effect
-                boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
-                transition: "transform 0.3s ease",
-                "&:hover": { animationPlayState: "paused", transform: "scale(1.05)" }
-              }}>
-                <Box sx={{ bgcolor: "#E91E63", p: 3, textAlign: "center", color: "white" }}>
-                  {React.cloneElement(v.icon, { sx: { fontSize: 50 } })}
-                </Box>
-                <CardContent>
-                  <Chip label={v.tag} size="small" sx={{ mb: 1, fontWeight: 900, bgcolor: "rgba(233, 30, 99, 0.1)", color: "#E91E63" }} />
-                  <Typography variant="h6" sx={{ fontWeight: 900 }}>{v.type}</Typography>
-                  <Typography variant="body2" sx={{ color: "text.secondary", mb: 2 }}>{v.capacity}</Typography>
-                  <Stack spacing={1}>
-                    {v.features.map((f, idx) => (
-                      <Typography key={idx} variant="caption" sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                        <VerifiedIcon sx={{ fontSize: 14, color: "#E91E63" }} /> {f}
-                      </Typography>
-                    ))}
-                  </Stack>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
+      <Box sx={{ width: "100%", py: 10, bgcolor: "#fff" }}>
+        <Box sx={{ 
+          maxWidth: "1300px", 
+          margin: "0 auto", 
+          px: { xs: 3, md: 6 },
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center"
+        }}>
+          {/* 🚗 VEHICLE GRID WITH ANTIGRAVITY */}
+          <Grid container spacing={4} justifyContent="center">
+            {vehicles.map((v, i) => (
+              <Grid item xs={12} sm={6} md={3} key={i} sx={{ display: 'flex', justifyContent: 'center' }}>
+                <Card sx={{
+                  borderRadius: 6,
+                  width: "100%",
+                  height: "100%",
+                  animation: `${float} ${3 + i}s ease-in-out infinite`, // Staggered floating effect
+                  boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+                  transition: "all 0.3s ease",
+                  "&:hover": { 
+                    animationPlayState: "paused", 
+                    transform: "translateY(-10px) scale(1.02)",
+                    boxShadow: "0 30px 60px rgba(233, 30, 99, 0.15)"
+                  }
+                }}>
+                  <Box sx={{ bgcolor: "#E91E63", p: 3, textAlign: "center", color: "white" }}>
+                    {React.cloneElement(v.icon, { sx: { fontSize: 50 } })}
+                  </Box>
+                  <CardContent sx={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
+                    <Chip label={v.tag} size="small" sx={{ mb: 1, width: "fit-content", fontWeight: 900, bgcolor: "rgba(233, 30, 99, 0.1)", color: "#E91E63" }} />
+                    <Typography variant="h6" sx={{ fontWeight: 900 }}>{v.type}</Typography>
+                    <Typography variant="body2" sx={{ color: "text.secondary", mb: 2 }}>{v.capacity}</Typography>
+                    <Stack spacing={1}>
+                      {v.features.map((f, idx) => (
+                        <Typography key={idx} variant="caption" sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                          <VerifiedIcon sx={{ fontSize: 14, color: "#E91E63" }} /> {f}
+                        </Typography>
+                      ))}
+                    </Stack>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
 
-        {/* 🛠️ SERVICES SECTION */}
-        <Typography variant="h4" sx={{ textAlign: "center", fontWeight: 900, mt: 15, mb: 8 }}>
-          Our Core <span style={{ color: "#E91E63" }}>Solutions</span>
-        </Typography>
+          {/* 🛠️ SERVICES SECTION */}
+          <Typography variant="h4" sx={{ textAlign: "center", fontWeight: 900, mt: 15, mb: 8 }}>
+            Our Core <span style={{ color: "#E91E63" }}>Solutions</span>
+          </Typography>
 
-        <Grid container spacing={3}>
-          {[
-            { title: "Airport Transfers", icon: <FlightIcon />, desc: "Punctual meet & greet at Narita, Haneda, Kansai, and more[cite: 1]." },
-            { title: "Hotel Transfers", icon: <HotelIcon />, desc: "Smooth transitions between hotels and stations[cite: 1]." },
-            { title: "Intercity Travel", icon: <IntercityIcon />, desc: "Direct private travel between Tokyo, Kyoto, Osaka, and Fuji[cite: 1]." },
-            { title: "Full-Day Hire", icon: <ClockIcon />, desc: "8-12 hour flexible sightseeing with customized routes[cite: 1]." },
-            { title: "Multi-Day Tours", icon: <CalendarIcon />, desc: "Dedicated vehicle and driver for your entire Japan journey[cite: 1]." }
-          ].map((service, i) => (
-            <Grid item xs={12} sm={6} md={4} key={i}>
-              <Paper elevation={0} sx={{ p: 4, border: "1px solid #eee", borderRadius: 4, textAlign: "center", height: "100%" }}>
-                <Box sx={{ color: "#E91E63", mb: 2 }}>{React.cloneElement(service.icon, { sx: { fontSize: 40 } })}</Box>
-                <Typography variant="h6" sx={{ fontWeight: 800, mb: 1 }}>{service.title}</Typography>
-                <Typography variant="body2" color="text.secondary">{service.desc}</Typography>
-              </Paper>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
+          <Grid container spacing={3} justifyContent="center">
+            {[
+              { title: "Airport Transfers", icon: <FlightIcon />, desc: "Punctual meet & greet at Narita, Haneda, Kansai, and more[cite: 1]." },
+              { title: "Hotel Transfers", icon: <HotelIcon />, desc: "Smooth transitions between hotels and stations[cite: 1]." },
+              { title: "Intercity Travel", icon: <IntercityIcon />, desc: "Direct private travel between Tokyo, Kyoto, Osaka, and Fuji[cite: 1]." },
+              { title: "Full-Day Hire", icon: <ClockIcon />, desc: "8-12 hour flexible sightseeing with customized routes[cite: 1]." },
+              { title: "Multi-Day Tours", icon: <CalendarIcon />, desc: "Dedicated vehicle and driver for your entire Japan journey[cite: 1]." }
+            ].map((service, i) => (
+              <Grid item xs={12} sm={6} md={4} key={i}>
+                <Paper elevation={0} sx={{ p: 4, border: "1px solid #eee", borderRadius: 4, textAlign: "center", height: "100%", transition: "all 0.3s ease", "&:hover": { borderColor: "#E91E63", boxShadow: "0 10px 30px rgba(0,0,0,0.05)" } }}>
+                  <Box sx={{ color: "#E91E63", mb: 2 }}>{React.cloneElement(service.icon, { sx: { fontSize: 40 } })}</Box>
+                  <Typography variant="h6" sx={{ fontWeight: 800, mb: 1 }}>{service.title}</Typography>
+                  <Typography variant="body2" color="text.secondary">{service.desc}</Typography>
+                </Paper>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+      </Box>
     </Box>
   );
 };
