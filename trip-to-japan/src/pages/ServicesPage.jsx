@@ -9,6 +9,7 @@ import {
   Button, 
   Stack, 
   Paper,
+  Chip,
   useTheme,
   useMediaQuery
 } from "@mui/material";
@@ -115,60 +116,79 @@ const ServicesPage = () => {
 
       <Container maxWidth="lg" sx={{ py: { xs: 8, md: 15 } }}>
         
-        {/* ✨ SERVICES GRID */}
+        {/* ✨ DYNAMIC SERVICES GRID */}
         <Grid container spacing={4}>
-          {servicesList.map((service, index) => (
-            <Grid item xs={12} md={6} lg={4} key={index}>
-              <Paper 
-                elevation={0}
-                sx={{ 
-                  p: 4, 
-                  height: "100%", 
-                  borderRadius: "24px", 
-                  bgcolor: "#f8fafc",
-                  border: "1px solid rgba(0,35,102,0.05)",
-                  transition: "all 0.3s ease",
-                  display: "flex",
-                  flexDirection: "column",
-                  "&:hover": {
-                    transform: "translateY(-10px)",
-                    boxShadow: "0 20px 40px rgba(0,0,0,0.05)",
-                    borderColor: "#FFB7C5"
-                  }
-                }}
-              >
-                <Box 
-                  sx={{ 
-                    bgcolor: "#fff", 
-                    color: "#FFB7C5", 
-                    p: 2, 
-                    borderRadius: "16px", 
-                    width: "fit-content",
-                    mb: 3,
-                    boxShadow: "0 5px 15px rgba(0,0,0,0.05)"
-                  }}
-                >
-                  {service.icon}
-                </Box>
-                <Typography variant="h5" sx={{ fontWeight: 800, color: "#002366", mb: 2 }}>
-                  {service.title}
-                </Typography>
-                <Typography variant="body2" sx={{ color: "rgba(0,0,0,0.6)", lineHeight: 1.7, mb: 3, flexGrow: 1 }}>
-                  {service.description}
-                </Typography>
-                <Stack spacing={1} sx={{ mt: "auto" }}>
-                  {service.features.map((feature, idx) => (
-                    <Box key={idx} sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-                      <CheckIcon sx={{ color: "#FFB7C5", fontSize: "1.1rem" }} />
-                      <Typography variant="body2" sx={{ fontWeight: 700, fontSize: "0.85rem", color: "#002366" }}>
-                        {feature}
-                      </Typography>
-                    </Box>
-                  ))}
-                </Stack>
-              </Paper>
-            </Grid>
-          ))}
+          {/* 1. Airport Transfers - Clean White */}
+          <Grid item xs={12} md={6} lg={4}>
+            <Box sx={whiteCardStyle}>
+              <Box sx={iconBoxStyle}><AirportIcon sx={{ fontSize: 32 }} /></Box>
+              <Typography variant="h5" sx={cardTitleStyle}>Airport Transfers</Typography>
+              <Typography variant="body2" sx={cardDescStyle}>Comfortable door-to-door transfers from Narita, Haneda, Kansai, and all major airports.</Typography>
+              <Stack spacing={1}>{["24/7 Support", "Private MPVs", "Meet & Greet"].map(f => (
+                <Box key={f} sx={{ display: "flex", alignItems: "center", gap: 1 }}><CheckIcon sx={{ color: "#FFB7C5", fontSize: 16 }} /><Typography variant="caption" fontWeight="700">{f}</Typography></Box>
+              ))}</Stack>
+            </Box>
+          </Grid>
+
+          {/* 2. FIT Tour Arrangements - Deep Blue (High Impact) */}
+          <Grid item xs={12} md={6} lg={4}>
+            <Box sx={blueCardStyle}>
+              <Box sx={{ ...iconBoxStyle, bgcolor: "rgba(255,183,197,0.1)", color: "#FFB7C5" }}><FitIcon sx={{ fontSize: 32 }} /></Box>
+              <Typography variant="h5" sx={{ ...cardTitleStyle, color: "#fff" }}>FIT Services</Typography>
+              <Typography variant="body2" sx={{ ...cardDescStyle, color: "rgba(255,255,255,0.7)" }}>Tailored arrangements for independent travelers seeking premium experiences in Japan.</Typography>
+              <Stack spacing={1.2} sx={{ mb: 2 }}>{["Hotel Bookings", "Private Transfers", "Activity Tickets"].map(f => (
+                <Box key={f} sx={{ display: "flex", alignItems: "center", gap: 1 }}><CheckIcon sx={{ color: "#FFB7C5", fontSize: 16 }} /><Typography variant="body2" fontWeight="600" color="#fff">{f}</Typography></Box>
+              ))}</Stack>
+            </Box>
+          </Grid>
+
+          {/* 3. Group Tour Management - Professional White */}
+          <Grid item xs={12} md={6} lg={4}>
+            <Box sx={whiteCardStyle}>
+              <Box sx={iconBoxStyle}><GroupIcon sx={{ fontSize: 32 }} /></Box>
+              <Typography variant="h5" sx={cardTitleStyle}>Group Tours</Typography>
+              <Typography variant="body2" sx={cardDescStyle}>Complete ground management for family, corporate, or student groups of all sizes.</Typography>
+              <Box sx={{ mt: "auto", pt: 2, bgcolor: "#f8fafc", mx: -4, mb: -4, p: 2, textAlign: "center", borderRadius: "0 0 24px 24px" }}>
+                <Typography variant="caption" sx={{ fontWeight: 800, color: "rgba(0,35,102,0.4)", letterSpacing: 1 }}>FULL COORDINATION & LOCAL SUPPORT</Typography>
+              </Box>
+            </Box>
+          </Grid>
+
+          {/* 4. Private Sightseeing - Clean White */}
+          <Grid item xs={12} md={6} lg={4}>
+            <Box sx={whiteCardStyle}>
+              <Box sx={iconBoxStyle}><PrivateTourIcon sx={{ fontSize: 32 }} /></Box>
+              <Typography variant="h5" sx={cardTitleStyle}>Private Sightseeing</Typography>
+              <Typography variant="body2" sx={cardDescStyle}>Explore Japan’s most popular attractions with professional drivers and expert local guides.</Typography>
+              <Stack spacing={1}>{["Tokyo & Kyoto", "Mt. Fuji Tours", "Custom Routes"].map(f => (
+                <Box key={f} sx={{ display: "flex", alignItems: "center", gap: 1 }}><CheckIcon sx={{ color: "#FFB7C5", fontSize: 16 }} /><Typography variant="caption" fontWeight="700">{f}</Typography></Box>
+              ))}</Stack>
+            </Box>
+          </Grid>
+
+          {/* 5. Activity & Tickets - White with Chips */}
+          <Grid item xs={12} md={6} lg={4}>
+            <Box sx={whiteCardStyle}>
+              <Box sx={{ ...iconBoxStyle, color: "#FFB7C5" }}><TicketIcon sx={{ fontSize: 32 }} /></Box>
+              <Typography variant="h5" sx={cardTitleStyle}>Attractions</Typography>
+              <Typography variant="body2" sx={cardDescStyle}>Skip the line with pre-arranged tickets for Japan’s top theme parks and attractions.</Typography>
+              <Stack direction="row" spacing={1} flexWrap="wrap" sx={{ mt: 2, gap: 1 }}>
+                {["Disneyland", "USJ", "teamLab", "Shibuya Sky"].map(t => (
+                  <Chip key={t} label={t} size="small" sx={{ bgcolor: "rgba(255,183,197,0.1)", color: "#002366", fontWeight: 800, fontSize: "10px" }} />
+                ))}
+              </Stack>
+            </Box>
+          </Grid>
+
+          {/* 6. Customized Tour Planning - Cherry Pink (Call to Action) */}
+          <Grid item xs={12} md={6} lg={4}>
+            <Box sx={pinkCardStyle}>
+              <Box sx={{ ...iconBoxStyle, bgcolor: "#002366", color: "#fff" }}><CustomIcon sx={{ fontSize: 32 }} /></Box>
+              <Typography variant="h5" sx={cardTitleStyle}>Customized Plans</Typography>
+              <Typography variant="body2" sx={{ ...cardDescStyle, color: "#002366", fontWeight: 600 }}>Need something unique? We'll build it for you based on your budget and interests.</Typography>
+              <Button variant="contained" sx={{ bgcolor: "#002366", borderRadius: "10px", fontWeight: 900, textTransform: "none", mt: 2 }}>Build My Trip</Button>
+            </Box>
+          </Grid>
         </Grid>
 
         {/* 🌟 WHY CHOOSE US CALLOUT */}
@@ -241,6 +261,41 @@ const ServicesPage = () => {
       </Container>
     </Box>
   );
+};
+
+const whiteCardStyle = {
+  p: 4, height: "100%", borderRadius: "24px", bgcolor: "#fff",
+  border: "1px solid rgba(0,35,102,0.08)", transition: "all 0.3s ease",
+  display: "flex", flexDirection: "column",
+  "&:hover": { transform: "translateY(-10px)", boxShadow: "0 20px 40px rgba(0,35,102,0.08)" }
+};
+
+const blueCardStyle = {
+  p: 4, height: "100%", borderRadius: "24px", bgcolor: "#002366",
+  color: "#fff", transition: "all 0.3s ease",
+  display: "flex", flexDirection: "column",
+  "&:hover": { transform: "translateY(-10px)", boxShadow: "0 20px 40px rgba(0,35,102,0.2)" }
+};
+
+const pinkCardStyle = {
+  p: 4, height: "100%", borderRadius: "24px", bgcolor: "#FFB7C5",
+  color: "#002366", transition: "all 0.3s ease",
+  display: "flex", flexDirection: "column",
+  "&:hover": { transform: "translateY(-10px)", boxShadow: "0 20px 40px rgba(255,183,197,0.3)" }
+};
+
+const iconBoxStyle = {
+  p: 1.5, borderRadius: "12px", width: "fit-content", mb: 3,
+  display: "flex", alignItems: "center", justifyContent: "center",
+  bgcolor: "rgba(0,35,102,0.05)", color: "#002366"
+};
+
+const cardTitleStyle = {
+  fontWeight: 900, mb: 1.5, fontSize: "1.4rem", color: "#002366"
+};
+
+const cardDescStyle = {
+  color: "rgba(0,35,102,0.6)", mb: 3, lineHeight: 1.6, flexGrow: 1, fontSize: "0.9rem"
 };
 
 export default ServicesPage;

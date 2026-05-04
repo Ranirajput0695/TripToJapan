@@ -24,7 +24,10 @@ import {
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import contactHero from "../assets/contact-hero.png";
-import { FormControlLabel, Checkbox } from "@mui/material";
+import { FormControlLabel, Checkbox, CircularProgress, Alert } from "@mui/material";
+import { useState } from "react";
+import { db } from "../firebaseConfig";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 const services = [
   "Airport Transfers",
@@ -38,6 +41,66 @@ const services = [
 const ContactPage = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
+  // Form State
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    travelDates: "",
+    travelers: "",
+    service: "",
+    message: "",
+    agreed: false
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState({ type: "", message: "" });
+
+  const handleChange = (e) => {
+    const { name, value, checked, type } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!formData.agreed) {
+      setStatus({ type: "error", message: "Please agree to the Terms & Conditions." });
+      return;
+    }
+
+    setLoading(true);
+    setStatus({ type: "", message: "" });
+
+    try {
+      await addDoc(collection(db, "inquiries"), {
+        ...formData,
+        submittedAt: serverTimestamp(),
+        source: "Contact Page"
+      });
+
+      setStatus({ type: "success", message: "Inquiry sent successfully! Our experts will contact you soon." });
+      setFormData({
+        fullName: "",
+        email: "",
+        phone: "",
+        travelDates: "",
+        travelers: "",
+        service: "",
+        message: "",
+        agreed: false
+      });
+    } catch (error) {
+      console.error("Error adding document: ", error);
+      setStatus({ type: "error", message: "Failed to send inquiry. Please try again or contact us directly." });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <Box sx={{ bgcolor: "#fff", color: "#1a1a1a" }}>
@@ -145,91 +208,241 @@ const ContactPage = () => {
             </Box>
           </Grid>
 
-          {/* 📝 INQUIRY FORM */}
+          {/* 📝 INQUIRY FORM - Redesigned for Premium Look */}
           <Grid item xs={12} md={7}>
-            <Paper 
-              elevation={0} 
+            <Box 
               sx={{ 
-                p: { xs: 4, md: 8 }, 
-                borderRadius: "40px", 
+                p: { xs: 4, md: 6 }, 
+                borderRadius: "32px", 
                 bgcolor: "#fff", 
-                border: "1px solid rgba(0,35,102,0.1)",
-                boxShadow: "0 20px 50px rgba(0,0,0,0.05)"
+                border: "1px solid rgba(0,35,102,0.08)",
+                boxShadow: "0 30px 60px rgba(0,35,102,0.05)",
+                position: "relative",
+                overflow: "hidden"
               }}
             >
-              <Typography variant="h4" sx={{ fontWeight: 900, color: "#002366", mb: 1 }}>
+              {/* Decorative Accent */}
+              <Box sx={{ position: "absolute", top: 0, left: 0, width: "100%", height: "4px", bgcolor: "#FFB7C5" }} />
+
+              <Typography variant="h4" sx={{ fontWeight: 900, color: "#002366", mb: 1, fontSize: { xs: "1.8rem", md: "2.4rem" } }}>
                 Send <span style={{ color: "#FFB7C5" }}>Inquiry</span>
               </Typography>
-              <Typography variant="body2" sx={{ color: "rgba(0,0,0,0.5)", mb: 6 }}>
-                Please fill in the details below and our experts will get back to you within 24 hours.
+              <Typography variant="body2" sx={{ color: "rgba(0,0,0,0.5)", mb: 5, maxWidth: "500px", lineHeight: 1.6 }}>
+                Please fill in the details below and our travel experts will get back to you within 24 hours to help plan your perfect trip.
               </Typography>
 
-              <Grid container spacing={3}>
-                <Grid item xs={12}>
-                  <TextField fullWidth label="Full Name" variant="outlined" placeholder="Enter your name" required />
+              <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
+                {status.message && (
+                  <Alert severity={status.type} sx={{ mb: 4, borderRadius: "12px" }}>
+                    {status.message}
+                  </Alert>
+                )}
+
+                <Grid container spacing={3}>
+                  {/* Row 1: Full Name */}
+                  <Grid item xs={12}>
+                    <TextField 
+                      fullWidth 
+                      label="Full Name" 
+                      name="fullName"
+                      value={formData.fullName}
+                      onChange={handleChange}
+                      variant="outlined" 
+                      placeholder="Enter your name" 
+                      required 
+                      sx={premiumInputStyle}
+                    />
+                  </Grid>
+                  
+                  {/* Row 2: Email & Phone */}
+                  <Grid item xs={12} sm={6}>
+                    <TextField 
+                      fullWidth 
+                      label="Email Address" 
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      variant="outlined" 
+                      placeholder="email@example.com" 
+                      required 
+                      sx={premiumInputStyle}
+                    />
+                  </Grid>
+                  
+                  <Grid item xs={12} sm={6}>
+                    <TextField 
+                      fullWidth 
+                      label="Phone Number" 
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      variant="outlined" 
+                      placeholder="+91 XXXXX XXXXX" 
+                      required 
+                      sx={premiumInputStyle}
+                    />
+                  </Grid>
+                  
+                  {/* Row 3: Travel Dates & Travelers */}
+                  <Grid item xs={12} sm={6}>
+                    <TextField 
+                      fullWidth 
+                      label="Travel Dates" 
+                      name="travelDates"
+                      value={formData.travelDates}
+                      onChange={handleChange}
+                      variant="outlined" 
+                      placeholder="e.g. June 2026" 
+                      required 
+                      sx={premiumInputStyle}
+                    />
+                  </Grid>
+                  
+                  <Grid item xs={12} sm={6}>
+                    <TextField 
+                      fullWidth 
+                      label="Number of Travelers" 
+                      name="travelers"
+                      type="number" 
+                      value={formData.travelers}
+                      onChange={handleChange}
+                      variant="outlined" 
+                      placeholder="e.g. 4" 
+                      required 
+                      sx={premiumInputStyle}
+                    />
+                  </Grid>
+                  
+                  {/* Row 4: Services Required */}
+                  <Grid item xs={12}>
+                    <TextField 
+                      fullWidth 
+                      select 
+                      label="Services Required" 
+                      name="service"
+                      value={formData.service}
+                      onChange={handleChange}
+                      variant="outlined" 
+                      required
+                      sx={premiumInputStyle}
+                    >
+                      {services.map((option) => (
+                        <MenuItem key={option} value={option} sx={{ fontSize: "0.9rem" }}>
+                          {option}
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                  </Grid>
+                  
+                  {/* Row 5: Message */}
+                  <Grid item xs={12}>
+                    <TextField 
+                      fullWidth 
+                      multiline 
+                      rows={4} 
+                      label="Your Message" 
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      variant="outlined" 
+                      placeholder="Tell us more about your trip requirements..." 
+                      required 
+                      sx={premiumInputStyle}
+                    />
+                  </Grid>
+                  
+                  {/* Row 6: T&C */}
+                  <Grid item xs={12}>
+                    <FormControlLabel
+                      control={
+                        <Checkbox 
+                          name="agreed"
+                          checked={formData.agreed}
+                          onChange={handleChange}
+                          required 
+                          sx={{ color: "rgba(0,35,102,0.2)", "&.Mui-checked": { color: "#FFB7C5" } }} 
+                        />
+                      }
+                      label={
+                        <Typography variant="body2" sx={{ color: "rgba(0,0,0,0.6)", fontSize: "0.85rem" }}>
+                          I agree to the <Link to="/terms-and-conditions" style={{ color: "#002366", fontWeight: 700, textDecoration: "none" }}>Terms & Conditions</Link> and <Link to="/cancellation-policy" style={{ color: "#002366", fontWeight: 700, textDecoration: "none" }}>Cancellation Policy</Link>.
+                        </Typography>
+                      }
+                      sx={{ mb: 1 }}
+                    />
+                  </Grid>
+                  
+                  {/* Row 7: Submit Button */}
+                  <Grid item xs={12}>
+                    <Button 
+                      type="submit"
+                      variant="contained" 
+                      size="large"
+                      disabled={loading}
+                      endIcon={loading ? <CircularProgress size={20} color="inherit" /> : <SendIcon />}
+                      sx={{ 
+                        bgcolor: "#002366", 
+                        color: "#fff", 
+                        px: { xs: 4, md: 8 },
+                        py: 2, 
+                        borderRadius: "12px", 
+                        fontWeight: 900, 
+                        fontSize: "1rem",
+                        letterSpacing: "1px",
+                        width: { xs: "100%", sm: "auto" },
+                        boxShadow: "0 10px 30px rgba(0,35,102,0.2)",
+                        "&:hover": { 
+                          bgcolor: "#FFB7C5", 
+                          color: "#002366",
+                          transform: "translateY(-3px)",
+                          boxShadow: "0 15px 35px rgba(255,183,197,0.4)"
+                        },
+                        transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+                      }}
+                    >
+                      {loading ? "SENDING..." : "SUBMIT INQUIRY"}
+                    </Button>
+                  </Grid>
                 </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField fullWidth label="Email Address" variant="outlined" placeholder="email@example.com" required />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField fullWidth label="Phone Number" variant="outlined" placeholder="+91 XXXXX XXXXX" required />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField fullWidth label="Travel Dates" type="text" variant="outlined" placeholder="e.g. June 2026" required />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField fullWidth label="Number of Travelers" type="number" variant="outlined" placeholder="e.g. 4" required />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField fullWidth select label="Services Required" variant="outlined" defaultValue="">
-                    {services.map((option) => (
-                      <MenuItem key={option} value={option}>
-                        {option}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField fullWidth multiline rows={4} label="Your Message" variant="outlined" placeholder="Tell us more about your trip requirements..." required />
-                </Grid>
-                <Grid item xs={12}>
-                  <FormControlLabel
-                    control={<Checkbox required sx={{ color: "#002366", "&.Mui-checked": { color: "#FFB7C5" } }} />}
-                    label={
-                      <Typography variant="body2" sx={{ color: "rgba(0,0,0,0.6)" }}>
-                        I agree to the <Link to="/terms-and-conditions" style={{ color: "#002366", fontWeight: 700 }}>Terms & Conditions</Link> and <Link to="/cancellation-policy" style={{ color: "#002366", fontWeight: 700 }}>Cancellation Policy</Link>.
-                      </Typography>
-                    }
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <Button 
-                    fullWidth 
-                    variant="contained" 
-                    size="large"
-                    endIcon={<SendIcon />}
-                    sx={{ 
-                      bgcolor: "#002366", 
-                      color: "#fff", 
-                      py: 2.5, 
-                      borderRadius: "15px", 
-                      fontWeight: 900, 
-                      fontSize: "1.1rem",
-                      mt: 2,
-                      "&:hover": { bgcolor: "#001a4d", transform: "scale(1.02)" },
-                      transition: "all 0.3s ease"
-                    }}
-                  >
-                    SUBMIT INQUIRY
-                  </Button>
-                </Grid>
-              </Grid>
-            </Paper>
+              </Box>
+            </Box>
           </Grid>
         </Grid>
       </Container>
     </Box>
   );
+};
+
+const premiumInputStyle = {
+  '& .MuiOutlinedInput-root': {
+    borderRadius: '12px',
+    backgroundColor: '#f8fafc',
+    '& fieldset': {
+      borderColor: 'rgba(0,35,102,0.08)',
+      transition: 'all 0.2s ease-in-out',
+    },
+    '&:hover fieldset': {
+      borderColor: '#FFB7C5',
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: '#002366',
+      borderWidth: '2px',
+    },
+    '& input, & .MuiSelect-select, & textarea': {
+      fontSize: '0.95rem',
+      padding: '16px 20px',
+    }
+  },
+  '& .MuiInputLabel-root': {
+    color: 'rgba(0,35,102,0.4)',
+    fontSize: '0.9rem',
+    ml: 0.5,
+    '&.Mui-focused': {
+      color: '#002366',
+      fontWeight: 700,
+    }
+  }
 };
 
 export default ContactPage;

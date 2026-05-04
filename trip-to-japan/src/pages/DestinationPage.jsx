@@ -21,6 +21,12 @@ import {
   Star as StarIcon,
   ArrowForward as ArrowIcon
 } from "@mui/icons-material";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import tokyoSkyline from "../assets/tokyo-skyline.png";
 import shibuyaCrossing from "../assets/shibuya-crossing.png";
 import sensoji from "../assets/sensoji.png";
@@ -138,23 +144,28 @@ const DestinationPage = () => {
               </Button>
             </Grid>
             <Grid item xs={12} md={7}>
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
-                  <Paper elevation={0} sx={{ borderRadius: "20px", overflow: "hidden", height: "300px" }}>
-                    <img src={tokyoSkyline} alt="Tokyo Skyline" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                  </Paper>
-                </Grid>
-                <Grid item xs={6}>
-                  <Paper elevation={0} sx={{ borderRadius: "20px", overflow: "hidden", height: "200px" }}>
-                    <img src={shibuyaCrossing} alt="Shibuya Crossing" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                  </Paper>
-                </Grid>
-                <Grid item xs={6}>
-                  <Paper elevation={0} sx={{ borderRadius: "20px", overflow: "hidden", height: "200px" }}>
-                    <img src={sensoji} alt="Sensoji Temple" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                  </Paper>
-                </Grid>
-              </Grid>
+              <Box sx={swiperContainerStyle}>
+                <Swiper
+                  modules={[Navigation, Pagination, Autoplay]}
+                  spaceBetween={15}
+                  slidesPerView={1}
+                  navigation
+                  pagination={{ clickable: true }}
+                  autoplay={{ delay: 3500 }}
+                  breakpoints={{
+                    640: { slidesPerView: 2 },
+                    1024: { slidesPerView: 3 },
+                  }}
+                >
+                  {[tokyoSkyline, shibuyaCrossing, sensoji].map((img, idx) => (
+                    <SwiperSlide key={idx}>
+                      <Box sx={galleryImageStyle}>
+                        <img src={img} alt="Tokyo" style={imageStyle} />
+                      </Box>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </Box>
             </Grid>
           </Grid>
         </Box>
@@ -165,17 +176,27 @@ const DestinationPage = () => {
         <Box sx={{ mb: 15 }}>
           <Grid container spacing={6} alignItems="center" direction={{ xs: "column-reverse", md: "row" }}>
             <Grid item xs={12} md={7}>
-              <Paper 
-                elevation={0}
-                sx={{ 
-                  borderRadius: "30px", 
-                  overflow: "hidden", 
-                  boxShadow: "0 30px 60px rgba(0,0,0,0.12)",
-                  height: { xs: "300px", md: "500px" }
-                }}
-              >
-                <img src={fukuokaDest} alt="Fukuoka Canal City" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-              </Paper>
+              <Box sx={swiperContainerStyle}>
+                <Swiper
+                  modules={[Navigation, Pagination, Autoplay]}
+                  spaceBetween={15}
+                  slidesPerView={1}
+                  navigation
+                  pagination={{ clickable: true }}
+                  autoplay={{ delay: 4000 }}
+                  breakpoints={{
+                    640: { slidesPerView: 2 },
+                  }}
+                >
+                  {[fukuokaDest, tokyoSkyline, osakaCastle].map((img, idx) => (
+                    <SwiperSlide key={idx}>
+                      <Box sx={galleryImageStyle}>
+                        <img src={img} alt="Fukuoka" style={imageStyle} />
+                      </Box>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </Box>
             </Grid>
             <Grid item xs={12} md={5}>
               <Typography variant="overline" sx={{ letterSpacing: 4, color: "#FFB7C5", fontWeight: "900" }}>
@@ -292,17 +313,27 @@ const DestinationPage = () => {
               </Button>
             </Grid>
             <Grid item xs={12} md={7}>
-              <Paper 
-                elevation={0}
-                sx={{ 
-                  borderRadius: "30px", 
-                  overflow: "hidden", 
-                  boxShadow: "0 30px 60px rgba(0,0,0,0.12)",
-                  height: { xs: "300px", md: "500px" }
-                }}
-              >
-                <img src={nagoyaDest} alt="Nagoya Castle" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-              </Paper>
+              <Box sx={swiperContainerStyle}>
+                <Swiper
+                  modules={[Navigation, Pagination, Autoplay]}
+                  spaceBetween={15}
+                  slidesPerView={1}
+                  navigation
+                  pagination={{ clickable: true }}
+                  autoplay={{ delay: 3600 }}
+                  breakpoints={{
+                    640: { slidesPerView: 2 },
+                  }}
+                >
+                  {[nagoyaDest, tokyoSkyline, shibuyaCrossing].map((img, idx) => (
+                    <SwiperSlide key={idx}>
+                      <Box sx={galleryImageStyle}>
+                        <img src={img} alt="Nagoya" style={imageStyle} />
+                      </Box>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </Box>
             </Grid>
           </Grid>
         </Box>
@@ -311,17 +342,27 @@ const DestinationPage = () => {
         <Box sx={{ mb: 15 }}>
           <Grid container spacing={6} alignItems="center" direction={{ xs: "column-reverse", md: "row" }}>
             <Grid item xs={12} md={7}>
-              <Paper 
-                elevation={0}
-                sx={{ 
-                  borderRadius: "30px", 
-                  overflow: "hidden", 
-                  boxShadow: "0 30px 60px rgba(0,0,0,0.12)",
-                  height: { xs: "300px", md: "500px" }
-                }}
-              >
-                <img src={hiroshimaDest} alt="Hiroshima Miyajima Torii" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-              </Paper>
+              <Box sx={swiperContainerStyle}>
+                <Swiper
+                  modules={[Navigation, Pagination, Autoplay]}
+                  spaceBetween={15}
+                  slidesPerView={1}
+                  navigation
+                  pagination={{ clickable: true }}
+                  autoplay={{ delay: 4200 }}
+                  breakpoints={{
+                    640: { slidesPerView: 2 },
+                  }}
+                >
+                  {[hiroshimaDest, sensoji, osakaCastle].map((img, idx) => (
+                    <SwiperSlide key={idx}>
+                      <Box sx={galleryImageStyle}>
+                        <img src={img} alt="Hiroshima" style={imageStyle} />
+                      </Box>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </Box>
             </Grid>
             <Grid item xs={12} md={5}>
               <Typography variant="overline" sx={{ letterSpacing: 4, color: "#FFB7C5", fontWeight: "900" }}>
@@ -438,17 +479,27 @@ const DestinationPage = () => {
               </Button>
             </Grid>
             <Grid item xs={12} md={7}>
-              <Paper 
-                elevation={0}
-                sx={{ 
-                  borderRadius: "30px", 
-                  overflow: "hidden", 
-                  boxShadow: "0 30px 60px rgba(0,0,0,0.12)",
-                  height: { xs: "300px", md: "500px" }
-                }}
-              >
-                <img src={hakoneDest} alt="Hakone Lake Ashi" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-              </Paper>
+              <Box sx={swiperContainerStyle}>
+                <Swiper
+                  modules={[Navigation, Pagination, Autoplay]}
+                  spaceBetween={15}
+                  slidesPerView={1}
+                  navigation
+                  pagination={{ clickable: true }}
+                  autoplay={{ delay: 3900 }}
+                  breakpoints={{
+                    640: { slidesPerView: 2 },
+                  }}
+                >
+                  {[hakoneDest, fujiImg, tokyoSkyline].map((img, idx) => (
+                    <SwiperSlide key={idx}>
+                      <Box sx={galleryImageStyle}>
+                        <img src={img} alt="Hakone" style={imageStyle} />
+                      </Box>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </Box>
             </Grid>
           </Grid>
         </Box>
@@ -457,17 +508,27 @@ const DestinationPage = () => {
         <Box sx={{ mb: 15 }}>
           <Grid container spacing={6} alignItems="center" direction={{ xs: "column-reverse", md: "row" }}>
             <Grid item xs={12} md={7}>
-              <Paper 
-                elevation={0}
-                sx={{ 
-                  borderRadius: "30px", 
-                  overflow: "hidden", 
-                  boxShadow: "0 30px 60px rgba(0,0,0,0.12)",
-                  height: { xs: "300px", md: "500px" }
-                }}
-              >
-                <img src={fujiImg} alt="Mount Fuji" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-              </Paper>
+              <Box sx={swiperContainerStyle}>
+                <Swiper
+                  modules={[Navigation, Pagination, Autoplay]}
+                  spaceBetween={15}
+                  slidesPerView={1}
+                  navigation
+                  pagination={{ clickable: true }}
+                  autoplay={{ delay: 4500 }}
+                  breakpoints={{
+                    640: { slidesPerView: 2 },
+                  }}
+                >
+                  {[fujiImg, hakoneDest, sensoji].map((img, idx) => (
+                    <SwiperSlide key={idx}>
+                      <Box sx={galleryImageStyle}>
+                        <img src={img} alt="Mount Fuji" style={imageStyle} />
+                      </Box>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </Box>
             </Grid>
             <Grid item xs={12} md={5}>
               <Typography variant="overline" sx={{ letterSpacing: 4, color: "#FFB7C5", fontWeight: "900" }}>
@@ -584,17 +645,27 @@ const DestinationPage = () => {
               </Button>
             </Grid>
             <Grid item xs={12} md={7}>
-              <Paper 
-                elevation={0}
-                sx={{ 
-                  borderRadius: "30px", 
-                  overflow: "hidden", 
-                  boxShadow: "0 30px 60px rgba(0,0,0,0.12)",
-                  height: { xs: "300px", md: "500px" }
-                }}
-              >
-                <img src={naraDest} alt="Nara Park" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-              </Paper>
+              <Box sx={swiperContainerStyle}>
+                <Swiper
+                  modules={[Navigation, Pagination, Autoplay]}
+                  spaceBetween={15}
+                  slidesPerView={1}
+                  navigation
+                  pagination={{ clickable: true }}
+                  autoplay={{ delay: 3700 }}
+                  breakpoints={{
+                    640: { slidesPerView: 2 },
+                  }}
+                >
+                  {[naraDest, osakaCastle, shibuyaCrossing].map((img, idx) => (
+                    <SwiperSlide key={idx}>
+                      <Box sx={galleryImageStyle}>
+                        <img src={img} alt="Nara" style={imageStyle} />
+                      </Box>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </Box>
             </Grid>
           </Grid>
         </Box>
@@ -603,18 +674,27 @@ const DestinationPage = () => {
         <Box sx={{ mb: 15 }}>
           <Grid container spacing={6} alignItems="center" direction={{ xs: "column-reverse", md: "row" }}>
             <Grid item xs={12} md={7}>
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
-                  <Paper elevation={0} sx={{ borderRadius: "20px", overflow: "hidden", height: "300px" }}>
-                    <img src={osakaGlico} alt="Dotonbori Night" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                  </Paper>
-                </Grid>
-                <Grid item xs={12}>
-                  <Paper elevation={0} sx={{ borderRadius: "20px", overflow: "hidden", height: "250px" }}>
-                    <img src={osakaCastle} alt="Osaka Castle Cherry Blossoms" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                  </Paper>
-                </Grid>
-              </Grid>
+              <Box sx={swiperContainerStyle}>
+                <Swiper
+                  modules={[Navigation, Pagination, Autoplay]}
+                  spaceBetween={15}
+                  slidesPerView={1}
+                  navigation
+                  pagination={{ clickable: true }}
+                  autoplay={{ delay: 3800 }}
+                  breakpoints={{
+                    640: { slidesPerView: 2 },
+                  }}
+                >
+                  {[osakaGlico, osakaCastle, sensoji].map((img, idx) => (
+                    <SwiperSlide key={idx}>
+                      <Box sx={galleryImageStyle}>
+                        <img src={img} alt="Osaka" style={imageStyle} />
+                      </Box>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </Box>
             </Grid>
             <Grid item xs={12} md={5}>
               <Typography variant="overline" sx={{ letterSpacing: 4, color: "#FFB7C5", fontWeight: "900" }}>
@@ -699,6 +779,40 @@ const DestinationPage = () => {
 
     </Box>
   );
+};
+
+const swiperContainerStyle = {
+  width: '100%',
+  '.swiper-button-next, .swiper-button-prev': {
+    color: '#002366',
+    background: 'rgba(255, 255, 255, 0.8)',
+    width: '35px',
+    height: '35px',
+    borderRadius: '50%',
+    '&::after': { fontSize: '1rem', fontWeight: 'bold' },
+    boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+    transition: 'all 0.3s ease',
+    '&:hover': { background: '#FFB7C5', color: '#002366' }
+  },
+  '.swiper-pagination-bullet-active': {
+    background: '#FFB7C5',
+    width: '20px',
+    borderRadius: '10px'
+  }
+};
+
+const galleryImageStyle = {
+  borderRadius: "20px", 
+  overflow: "hidden", 
+  height: { xs: "250px", sm: "300px", md: "400px" },
+  boxShadow: "0 15px 35px rgba(0,0,0,0.08)",
+  border: "1px solid rgba(0,35,102,0.05)"
+};
+
+const imageStyle = {
+  width: "100%", 
+  height: "100%", 
+  objectFit: "cover"
 };
 
 export default DestinationPage;

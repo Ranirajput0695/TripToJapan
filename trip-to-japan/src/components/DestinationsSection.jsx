@@ -123,6 +123,7 @@ const DestinationsSection = () => {
                         className="dest-image"
                         sx={{
                           height: "100%",
+                          objectFit: "cover",
                           transition: "transform 0.6s ease-in-out"
                         }}
                       />
