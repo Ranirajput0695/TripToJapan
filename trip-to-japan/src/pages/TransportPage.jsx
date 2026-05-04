@@ -80,9 +80,9 @@ const TransportPage = () => {
         </Typography>
       </Box>
 
-      <Container maxWidth="lg" sx={{ mt: -10, pb: 10 }}>
+      <Container maxWidth="lg" sx={{ pt: 10, pb: 10 }}>
         {/* 🚗 VEHICLE GRID WITH ANTIGRAVITY */}
-        <Grid container spacing={4}>
+        <Grid container spacing={4} justifyContent="center">
           {vehicles.map((v, i) => (
             <Grid item xs={12} sm={6} md={3} key={i}>
               <Card sx={{

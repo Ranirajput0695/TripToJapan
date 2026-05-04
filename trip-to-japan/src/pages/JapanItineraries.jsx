@@ -123,7 +123,7 @@ const JapanItineraries = () => {
               </Box>
             </Stack>
 
-            <Grid container spacing={4}>
+            <Grid container spacing={4} justifyContent="center">
               {itinerary.steps.map((step, index) => (
                 <Grid item xs={12} sm={6} md={3} key={index} sx={{ display: 'flex' }}>
                   <Paper 

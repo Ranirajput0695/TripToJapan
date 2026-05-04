@@ -117,7 +117,7 @@ const ServicesPage = () => {
       <Container maxWidth="lg" sx={{ py: { xs: 8, md: 15 } }}>
         
         {/* ✨ DYNAMIC SERVICES GRID */}
-        <Grid container spacing={4}>
+        <Grid container spacing={4} justifyContent="center">
           {/* 1. Airport Transfers - Clean White */}
           <Grid item xs={12} md={6} lg={4}>
             <Box sx={whiteCardStyle}>
